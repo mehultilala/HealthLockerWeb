@@ -1,0 +1,73 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <img src="./assets/img/HealthLockerLogo.jpeg" width="100px" height="64px" />
+    <span>Third Line</span>
+    <span class="example-spacer"></span>
+    <mat-icon
+      class="example-icon"
+      aria-hidden="false"
+      aria-label="Example heart icon"
+      >favorite</mat-icon
+    >
+    <mat-icon
+      class="example-icon"
+      aria-hidden="false"
+      aria-label="Example delete icon"
+      >delete</mat-icon
+    >
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<section>
+  <div class="example-label">Basic</div>
+  <div class="example-button-row">
+    <button mat-button>Basic</button>
+    <button mat-button color="primary">Primary</button>
+    <button mat-button color="accent">Accent</button>
+    <button mat-button color="warn">Warn</button>
+    <button mat-button disabled>Disabled</button>
+    <a mat-button href="https://www.google.com/" target="_blank">Link</a>
+  </div>
+</section>
+
+<p>
+  <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
+</p>
+
+<p>
+  <span matBadge="1" matBadgeSize="large">Text with large badge</span>
+</p>
+
+<p>
+  Button with a badge on the left
+  <button
+    mat-raised-button
+    color="primary"
+    matBadge="8"
+    matBadgePosition="before"
+    matBadgeColor="accent"
+  >
+    Action
+  </button>
+</p>
+
+<p>
+  Button toggles badge visibility
+  <button
+    mat-raised-button
+    matBadge="7"
+    [matBadgeHidden]="hidden"
+    (click)="toggleBadgeVisibility()"
+  >
+    Hide
+  </button>
+</p>
+
+<p>
+  Icon with a badge
+  <mat-icon matBadge="15" matBadgeColor="warn">home</mat-icon>
+  <!-- Include text description of the icon's meaning for screen-readers -->
+  <span class="cdk-visually-hidden">
+    Example with a home icon with overlaid badge showing the number 15
+  </span>
+</p>

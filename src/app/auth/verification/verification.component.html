@@ -1,0 +1,56 @@
+<div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="2em">
+  <div class="label-text">Verify your Mobile</div>
+  <form
+    [formGroup]="verificationForm"
+    (ngSubmit)="verify()"
+    fxLayout="column"
+    fxLayoutGap="1em"
+    novalidate
+  >
+    <label class="light-text"
+      >OTP sent to <span class="phone-no">{{ phoneNumber() }}</span></label
+    >
+
+    <mat-form-field class="full-width">
+      <input
+        formControlName="otp"
+        matInput
+        placeholder="Enter OTP"
+        maxlength="6"
+      />
+      <mat-error *ngIf="verificationForm.get('otp')?.hasError('required')">
+        OTP is <span class="err-highlight">required</span>.
+      </mat-error>
+      <mat-error *ngIf="verificationForm.get('otp')?.hasError('invalid')">
+        OTP is <span class="err-highlight">invalid/expired</span>.
+      </mat-error>
+      <mat-error *ngIf="verificationForm.get('otp')?.hasError('pattern')">
+        Please enter <span class="err-highlight">6 digit OTP</span> received on
+        your mobile.
+      </mat-error>
+    </mat-form-field>
+
+    <div fixLayout="row" fxLayoutAlign="space-between center">
+      <button mat-raised-button color="primary">VERIFY</button>
+      <div>
+        <span class="light-text">({{ timeOutText }} ) </span>
+        <a
+          mat-raised-button
+          (click)="resendOtp()"
+          style="text-decoration: none; color: inherit"
+          [disabled]="resendDisabled"
+          >Resend OTP</a
+        >
+      </div>
+    </div>
+
+    <br />
+    <a
+      [routerLink]="['/auth', 'register']"
+      mat-raised-button
+      style="width: 50%; text-decoration: none; color: inherit"
+      >Change Mobile number</a
+    >
+  </form>
+  <!-- <div style="text-align: center;"><a mat-raised-button [routerLink]="'../forgot-password'">Forgot Password?</a></div> -->
+</div>
