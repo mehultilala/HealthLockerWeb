@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, mergeMap } from 'rxjs';
+import { LocalstorageService } from 'src/app/LocalstorageService';
 
 @Injectable({
   providedIn: 'root',
@@ -7,14 +8,14 @@ import { BehaviorSubject, map, mergeMap } from 'rxjs';
 export class ProfileService {
   currentUser$ = new BehaviorSubject<any>(null);
 
-  constructor() {}
+  constructor(private _localStorage: LocalstorageService) {}
 
   private fetchProfile() {}
 
   get currentUser(): any {
     return (
       this.currentUser$.value ||
-      JSON.parse(localStorage.getItem('currentUser') as string)
+      JSON.parse(this._localStorage.getItem('currentUser') as string)
     );
   }
 

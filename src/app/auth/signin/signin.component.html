@@ -19,14 +19,14 @@
   >
     <mat-form-field class="full-width">
       <input
-        formControlName="email"
+        formControlName="userName"
         matInput
         placeholder="Email or Mobile(10 digits)"
       />
-      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+      <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">
         Email or Mobile number is <span class="err-highlight">required</span>
       </mat-error>
-      <mat-error *ngIf="loginForm.get('email')?.hasError('pattern')">
+      <mat-error *ngIf="loginForm.get('userName')?.hasError('pattern')">
         Enter a <span class="err-highlight">valid</span> Email or Mobile number.
       </mat-error>
     </mat-form-field>

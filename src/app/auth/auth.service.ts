@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ProfileService } from '../common/services/profile.service';
 import { environment } from 'src/environments/environment';
+import { LocalstorageService } from '../LocalstorageService';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,13 @@ export class AuthService {
   constructor(
     private _httpClient: HttpClient,
     private _router: Router,
-    private _pService: ProfileService
+    private _pService: ProfileService,
+    private _localStorage: LocalstorageService
   ) {
-    if (localStorage.getItem('auth_token') && !!localStorage.getItem('user')) {
+    if (
+      this._localStorage.getItem('authToken') &&
+      !!this._localStorage.getItem('user')
+    ) {
       this.loggedIn$.next(true);
       this.authState = true;
     }
@@ -26,7 +31,7 @@ export class AuthService {
   authState: boolean = false;
 
   loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(
-    !!localStorage.getItem('auth_token')
+    !!this._localStorage.getItem('authToken')
   );
   signInProgress: BehaviorSubject<string> = new BehaviorSubject('');
   signUpProgress: BehaviorSubject<string> = new BehaviorSubject('');
@@ -42,15 +47,15 @@ export class AuthService {
   }
 
   private server() {
-    return `${environment.serverUrl}/client/auth_user`;
+    return `${environment.serverUrl}/api/auth/sign-in`;
   }
 
   private get signUpAPI() {
-    return `${environment.serverUrl}/client/sign_up`;
+    return `${environment.serverUrl}/api/auth/sign-up`;
   }
 
   private get forgotPasswordAPI() {
-    return `${environment.serverUrl}/client/forgot_password`;
+    return `${environment.serverUrl}/api/auth/forgot-password`;
   }
 
   private get verificationAPI() {
@@ -63,7 +68,7 @@ export class AuthService {
 
   authenticate(credentials: any): Observable<any> {
     this.signInProgress.next('Siging in...');
-    return this._httpClient.post<AuthResponse>(this.server(), credentials);
+    return this._httpClient.post<any>(this.server(), credentials);
   }
 
   register(signupParams: any): Observable<any> {
@@ -97,20 +102,23 @@ export class AuthService {
     }
   }
 
-  storeToken(data: AuthResponse) {
+  storeToken(data: any) {
     this.signInProgress.next('Signed in sucessfully. Please wait...');
     this.clearToken();
-    localStorage.setItem('auth_token', data.auth_token);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    localStorage.setItem('auth_token', data.auth_token);
+    this._localStorage.setItem('authToken', data.authToken);
+    this._localStorage.setItem('user', JSON.stringify(data.user));
+  }
+
+  getToken() {
+    return this._localStorage.getItem('authToken');
   }
 
   private clearToken() {
-    if (localStorage.getItem('auth_token')) {
-      localStorage.removeItem('auth_token');
+    if (this._localStorage.getItem('authToken')) {
+      this._localStorage.removeItem('authToken');
     }
-    localStorage.removeItem('user');
-    localStorage.removeItem('auth_token');
+    this._localStorage.removeItem('user');
+    this._localStorage.removeItem('authToken');
   }
 
   signOut() {
@@ -125,12 +133,4 @@ export class AuthService {
     this.loggedIn$.next(false);
     this._router.navigate(['/auth']);
   }
-}
-
-interface AuthResponse {
-  auth_token: string;
-  user: {
-    id: number;
-    phone: string;
-  };
 }

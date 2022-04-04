@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './signin/signin.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -17,7 +17,7 @@ import { VerificationComponent } from './verification/verification.component';
     AuthRoutingModule,
   ],
   declarations: [
-    LoginComponent,
+    SigninComponent,
     ForgotPasswordComponent,
     AuthComponent,
     SignupComponent,

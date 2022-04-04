@@ -1,0 +1,37 @@
+@import '~@angular/material/theming';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+
+  .mat-list-item.active {
+    background-color: #dc143c;
+    color: white;
+  }
+  &:hover,
+  &:focus {
+    >.mat-list-item:not(.expanded) {
+      background-color: #E8E8E8 !important;
+    }
+  }
+}
+
+.mat-list-item {
+  padding: 8px 0;
+  display: flex;
+  width: 100%;
+
+  .sidenav-icon.mat-list-icon {
+    border-radius: 0;
+  }
+
+  .routeIcon {
+    margin-right: 40px;
+  }
+}
+.active-route {
+  background: #dc143c;
+  color: white;
+}

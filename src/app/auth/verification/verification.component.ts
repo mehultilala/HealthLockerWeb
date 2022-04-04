@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { Observable, interval, take, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LocalstorageService } from 'src/app/LocalstorageService';
 
 @Component({
   selector: 'truckola-verification',
@@ -14,7 +15,8 @@ export class VerificationComponent implements OnInit {
   constructor(
     private _auth: AuthService,
     private _fb: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _localStorage: LocalstorageService
   ) {}
   verificationForm!: FormGroup;
   resendDisabled = true;
@@ -67,7 +69,7 @@ export class VerificationComponent implements OnInit {
           if (resp.otp_invalid) {
             this.verificationForm.controls['otp'].setErrors({ invalid: true });
           } else {
-            localStorage.removeItem('signupUser');
+            this._localStorage.removeItem('signupUser');
             this._router.navigate(['/auth', 'signin'], {
               queryParams: { action: 'success' },
             });

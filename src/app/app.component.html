@@ -1,2 +1,61 @@
-<h1>Jay Mataji 1</h1>
-<router-outlet></router-outlet>
+<div class="toolbar-container" #toolbarContainer>
+  <mat-toolbar
+    class="mat-elevation-z3"
+    [style.background]="'white'"
+    fxLayoutGap="18px"
+  >
+    <div
+      #toolbarContainer
+      class="primary-title-area"
+      fxLayout="row"
+      fxLayoutGap="0.5em"
+      fxLayoutAlign="space-around center"
+    >
+      <img
+        src="./assets/img/HealthLockerLogo.jpeg"
+        width="100px"
+        height="64px"
+      />
+      <h3 class="mat-display-2" [ngStyle]="{ 'font-size': '16px' }">
+        {{ title }}
+      </h3>
+    </div>
+    <span fxFlex></span>
+    <!-- <mat-icon>search</mat-icon>
+    <mat-input-container floatPlaceholder="never">
+      <input mdInput placeholder="Search" value="">
+    </mat-input-container> -->
+    <div></div>
+    <div>
+      <a
+        class="mat-h3"
+        mat-button
+        color="primary"
+        [routerLink]="['/dashboard', 'bank_details']"
+        >Add Credits</a
+      >
+    </div>
+    <div>
+      <a [routerLink]="'credits'" class="mat-button"
+        >Usable Balance: {{ (currentUser$ | async)?.balanceCredits }}</a
+      >
+    </div>
+    <div fxLayout>
+      <mat-icon>account_circle</mat-icon>
+      <mat-icon [matMenuTriggerFor]="menu">expand_more</mat-icon>
+      <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+        <a [routerLink]="'profile'" mat-menu-item>Profile</a>
+        <button (click)="signOut()" mat-menu-item>
+          <!-- <mat-icon>voicemail</mat-icon> -->
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</div>
+<div class="module-page">
+  <router-outlet></router-outlet>
+</div>
+<div class="footer-container" #footerContainer>
+  <app-footer></app-footer>
+</div>

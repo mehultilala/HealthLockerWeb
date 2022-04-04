@@ -1,0 +1,56 @@
+<a
+  mat-list-item
+  [ngStyle]="{ 'padding-left': depth * 12 + 'px' }"
+  (click)="onItemSelected(item)"
+  [ngClass]="{
+    active: item.path
+      ? router.isActive('/dashboard/' + item.path, true)
+      : false,
+    expanded: expanded
+  }"
+  class="menu-list-item"
+  style="flex: 1 0 auto"
+>
+  <img
+    *ngIf="item.activeIcon; else no_span"
+    style="width: 24px; height: 24px; opacity: 0.9; flex: 1 0 auto"
+    mat-list-icon
+    class="sidenav-icon"
+    [src]="
+      router.isActive('/dashboard/' + item.path, true)
+        ? item.activeIcon
+        : item!.inactiveIcon
+    "
+    alt=" "
+  />
+  <ng-template #no_span>
+    <span style="width: 24px"></span>
+  </ng-template>
+  <h3 mat-line [ngStyle]="{ 'font-size': '15px' }">{{ item.title }}</h3>
+  <span
+    fxFlex
+    *ngIf="item.children && item.children.length"
+    style="display: contents"
+  >
+    <span fxFlex></span>
+    <img
+      *ngIf="item.beta_version"
+      style="width: 50px; height: 50px; flex: 1 0 auto"
+      mat-list-icon
+      class="sidenav-icon"
+      [src]="item.beta_version"
+      alt=" "
+    />
+    <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">
+      expand_more
+    </mat-icon>
+  </span>
+</a>
+<div *ngIf="expanded">
+  <app-menu-list-item
+    *ngFor="let child of item.children"
+    [item]="child"
+    [depth]="depth + 1"
+  >
+  </app-menu-list-item>
+</div>

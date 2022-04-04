@@ -13,11 +13,11 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class SigninComponent implements OnInit, OnDestroy {
   constructor(
     private _authService: AuthService,
     private _fb: FormBuilder,
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this._authService.loggedIn.unsubscribe();
+    this._authService.loggedIn$.unsubscribe();
     this.signInStatusSub.unsubscribe();
     if (this.profSub) {
       this.profSub.unsubscribe();
@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   setFields() {
     this.loginForm = this._fb.group({
-      email: [
+      userName: [
         this.phone_no,
         [
           Validators.required,
@@ -105,13 +105,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this._authService.authenticate(this.loginForm.value).subscribe(
-      (resp: any) => {
+    this._authService.authenticate(this.loginForm.value).subscribe({
+      next: (resp: any) => {
         this._authService.storeToken(resp);
         this.afterSignIn();
       },
-      (e: HttpErrorResponse) => this._authService.handleSignInError(e)
-    );
+      error: (e: HttpErrorResponse) => this._authService.handleSignInError(e),
+    });
   }
 
   openForgotPasswordForm(form: TemplateRef<any>) {
@@ -214,9 +214,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private afterSignIn(): void {
     this._authService.loggedIn$.next(true);
-    this.profSub = this._pService.getProfile().subscribe(() => {
-      // console.log("Navigating to Dashboard");
-      this._router.navigate(['/dashboard']);
-    });
+    this._router.navigate(['/']);
+    // this.profSub = this._pService.getProfile().subscribe(() => {
+    //   // console.log("Navigating to Dashboard");
+    //   this._router.navigate(['/dashboard']);
+    // });
   }
 }
