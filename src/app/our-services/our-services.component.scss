@@ -1,0 +1,39 @@
+@import './../../style-common.scss';
+
+.service-image{
+  width: 100%;
+  //max-height:450px;
+  border-radius: 4px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, .2);
+}
+
+.heading {
+  color: $heading-color;
+  font-size: $xlx-text-size!important;
+  font-weight: 600!important;
+  margin: 0px;
+}
+
+@media screen and (max-width: 599px) {
+  .heading {
+    font-size: $lg-text-size!important;
+    font-weight: 600 !important;
+    padding-top: 20px;
+  }
+}
+
+.content{
+  font-size: $smx-text-size!important;
+  font-weight: 400!important;
+  line-height: 1.8;
+  color: #777;
+  margin: 24px 0px;
+  text-align: left!important;
+  word-break: break-word;
+}
+
+@media screen and (max-width: 599px) {
+  .content{
+    font-size: $sm-text-size!important;
+  }
+}

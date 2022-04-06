@@ -1,0 +1,208 @@
+<div
+  fxFlex
+  fxLayout="row"
+  fxFlexFill
+  fxLayoutAlign="center center"
+  class="background-color"
+>
+  <div
+    class="nb-container"
+    fxFlex="90"
+    fxFlex.lt-lg="100"
+    fxLayout="column"
+    fxLayoutGap="50px"
+  >
+    <div
+      fxLayout="row"
+      fxLayout.xs="column wrap"
+      fxLayoutGap="40px"
+      fxLayoutAlign="center start"
+    >
+      <div fxFlex="30" fxLayout="column" fxLayoutGap="30px">
+        <div>
+          <h6 class="nb-sec-heading">Visit our branch at</h6>
+          <div fxLayout="row">
+            <div>
+              <i class="fa fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <span>
+                89-1A, Road No. 12, Ricco Industrial Area,<br />Madri, Udaipur,
+                Rajasthan,<br />
+                313002, India.<br
+              /></span>
+            </div>
+          </div>
+          <div fxLayout="row" style="margin-top: 16px">
+            <div>
+              <i class="fa fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <span>
+                Kota &nbsp;&nbsp;&nbsp;
+                <span style="opacity: 0.2">|&nbsp;&nbsp;&nbsp;</span>Bhilwara
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="opacity: 0.2"
+                  >|&nbsp;&nbsp;&nbsp;</span
+                >
+                Bhiwadi<br
+              /></span>
+              <span>
+                Jaipur&nbsp;&nbsp;<span style="opacity: 0.2"
+                  >|&nbsp;&nbsp;&nbsp;</span
+                >Jodhpur</span
+              >
+            </div>
+          </div>
+        </div>
+        <div>
+          <h6 class="nb-sec-heading">Contact us</h6>
+          <div fxLayout="column">
+            <div>
+              <i class="fa fa-phone"></i>
+              <span>+91 98290 35159</span>
+            </div>
+            <div>
+              <i class="fa fa-envelope"></i>
+              <span
+                ><a
+                  href="mailto:anurag_shell@rediffmail.com"
+                  style="text-decoration: none; color: black"
+                  >anurag_shell@rediffmail.com</a
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        fxFlex="50"
+        fxLayoutAlign="start start"
+        [ngStyle.xs]="{ width: '100%' }"
+      >
+        <div fxFlex fxLayout="column">
+          <h6 class="nb-sec-heading">Write us a message</h6>
+          <div fxFlex="100">
+            <form
+              [formGroup]="ef"
+              (ngSubmit)="submitEnquiry(ef)"
+              #form="ngForm"
+              fxLayout="column"
+              fxFlexAlign="start"
+              fxLayoutGap="0.5em"
+            >
+              <div
+                class="row"
+                fxLayout
+                fxLayoutGap="2em"
+                fxLayout.xs="column wrap"
+                fxLayoutGap.xs=".5em"
+              >
+                <mat-form-field fxFlex>
+                  <input
+                    matInput
+                    placeholder="Your Name"
+                    required
+                    title="Your Name"
+                    formControlName="name"
+                  />
+                  <mat-error *ngIf="ef.get('name')?.hasError('required')">
+                    Name is <span class="err-highlight">required</span>.
+                  </mat-error>
+                  <mat-error *ngIf="ef.get('name')?.hasError('minlength')">
+                    Name should be of at least 5 character.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <input
+                    matInput
+                    placeholder="Company Name"
+                    required
+                    title="Company Name"
+                    formControlName="companyName"
+                  />
+                  <mat-error
+                    *ngIf="ef.get('companyName')?.hasError('required')"
+                  >
+                    Company Name is <span class="err-highlight">required</span>.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="ef.get('companyName')?.hasError('minlength')"
+                  >
+                    Company Name should be of at least 5 character.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div
+                class="row"
+                fxLayout
+                fxLayoutGap="1em"
+                fxLayout.xs="column wrap"
+                fxLayoutGap.xs=".5em"
+              >
+                <mat-form-field fxFlex>
+                  <input
+                    matInput
+                    placeholder="Email"
+                    required
+                    title="Your Email"
+                    formControlName="email"
+                  />
+                  <mat-error *ngIf="ef.get('email')?.hasError('required')">
+                    Email is <span class="err-highlight">required</span>.
+                  </mat-error>
+                  <mat-error *ngIf="ef.get('email')?.hasError('email')">
+                    Email is <span class="err-highlight">invalid</span>.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <input
+                    matInput
+                    placeholder="Phone Number"
+                    required
+                    title="Your 10 Digit Phone Number"
+                    formControlName="phoneNumber"
+                    oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"
+                  />
+                  <mat-error
+                    *ngIf="ef.get('phoneNumber')?.hasError('required')"
+                  >
+                    Phone Number is <span class="err-highlight">required</span>.
+                  </mat-error>
+                  <mat-error *ngIf="ef.get('phoneNumber')?.hasError('pattern')">
+                    Phone Number is <span class="err-highlight">invalid</span>.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <mat-form-field fxFlex>
+                <textarea
+                  matInput
+                  placeholder="Message/Enquiry"
+                  required
+                  title="Enquiry"
+                  type="text"
+                  rows="5"
+                  formControlName="message"
+                ></textarea>
+                <mat-error *ngIf="ef.get('message')?.hasError('required')">
+                  Message is <span class="err-highlight">required</span>.
+                </mat-error>
+                <mat-error *ngIf="ef.get('message')?.hasError('minlength')">
+                  Message should be of at least 10 character long.
+                </mat-error>
+              </mat-form-field>
+              <div fxFlex fxFlexAlign="start" fxLayoutGap="1em">
+                <button mat-raised-button color="primary" type="submit">
+                  SAVE
+                </button>
+                <button mat-raised-button color="default" type="reset">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

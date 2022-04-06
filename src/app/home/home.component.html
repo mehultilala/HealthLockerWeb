@@ -1,53 +1,38 @@
-<section>
-  <div class="example-label">Basic</div>
-  <div class="example-button-row">
-    <button mat-button>Basic</button>
-    <button mat-button color="primary">Primary</button>
-    <button mat-button color="accent">Accent</button>
-    <button mat-button color="warn">Warn</button>
-    <button mat-button disabled>Disabled</button>
-    <a mat-button href="https://www.google.com/" target="_blank">Link</a>
-  </div>
-</section>
-
-<p>
-  <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
-</p>
-
-<p>
-  <span matBadge="1" matBadgeSize="large">Text with large badge</span>
-</p>
-
-<p>
-  Button with a badge on the left
-  <button
-    mat-raised-button
-    color="primary"
-    matBadge="8"
-    matBadgePosition="before"
-    matBadgeColor="accent"
+<!-- <carousel *ngIf="companies.length === 0"
+  [cellWidth]="'100%'" [height]="proportion" [margin]="0"
+  [dots]="false" [arrows]="false" [pauseOnHover]="false"
+  [loop]="false" [autoplay]="false"
   >
-    Action
-  </button>
-</p>
+    <div class="carousel-cell" *ngFor="let company of dummyCompanies |crouselFilter;">
+      <div class="rc-div" [ngStyle]="{'background-image': 'url('+company.carousel+')'}">
+        <div class="data-box">
+          <p class="company-header">{{ company.name }}</p>
+          <p class="company-about" >{{ company.about | excerptWidth:((proportion === '100%' ) ? 0 : 150) }}</p>
+          <button mat-flat-button color="primary" (click)="viewProduct(company.id)">
+            View Products
+          </button>
+        </div>
+      </div>
+    </div>
+</carousel> -->
 
-<p>
-  Button toggles badge visibility
-  <button
-    mat-raised-button
-    matBadge="7"
-    [matBadgeHidden]="hidden"
-    (click)="toggleBadgeVisibility()"
+<!-- <div class="company-carousel"></div>
+<carousel *ngIf="companies.length != 0"
+  [cellWidth]="'100%'" [height]="proportion" [margin]="0"
+  [dots]="true" [arrows]="proportion === '100%'" [pauseOnHover]="false"
+  [loop]="true" [autoplay]="true" [autoplayInterval]="3500" [transitionDuration]="1000" [overflowCellsLimit]="2"
   >
-    Hide
-  </button>
-</p>
+    <div class="carousel-cell" *ngFor="let company of companies |crouselFilter;">
+      <div class="rc-div" [ngStyle]="{'background-image': 'url('+company.carousel+')'}">
+        <div class="data-box">
+          <p class="company-header">{{ company.name }}</p>
+          <p class="company-about" >{{ company.about | excerptWidth:((proportion === '100%' ) ? 0 : 150) }}</p>
+          <button mat-flat-button color="primary" (click)="viewProduct(company.id)">
+            View Products
+          </button>
+        </div>
+      </div>
+    </div>
+</carousel> -->
 
-<p>
-  Icon with a badge
-  <mat-icon matBadge="15" matBadgeColor="warn">home</mat-icon>
-  <!-- Include text description of the icon's meaning for screen-readers -->
-  <span class="cdk-visually-hidden">
-    Example with a home icon with overlaid badge showing the number 15
-  </span>
-</p>
+<app-aboutus [showHomeContent]="true"></app-aboutus>

@@ -1,0 +1,440 @@
+<div fxFlex fxLayout="row" fxFlexFill fxLayoutAlign="center center">
+  <div
+    class="nb-container"
+    fxFlex="80"
+    fxFlex.lt-lg="100"
+    fxLayout="column"
+    fxLayoutGap="50px"
+  >
+    <!-- OUR SERVICE FEATURES SECTION-->
+    <div
+      *ngIf="showHomeContent"
+      fxFlex="100"
+      fxLayout="column"
+      fxFlexFill
+      fxLayoutGap="30px"
+      fxLayoutAlign="center stretch"
+      style="padding-bottom: 50px"
+    >
+      <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+        <div>
+          <img
+            src="assets/img/divider.png"
+            alt="Our Satisfied Customers"
+            style="margin-bottom: 20px"
+          />
+        </div>
+        <div class="nb-heading">Products & Services</div>
+        <div class="section-heading-line line-thin"></div>
+        <div>
+          <p class="para-content">Why our clients are satisfied with Us.</p>
+        </div>
+      </div>
+
+      <div
+        fxFlex
+        fxLayout="row wrap"
+        fxLayout.xs="column wrap"
+        fxLayoutGap.xs="10px"
+        fxLayoutAlign="space-around stretch"
+      >
+        <div
+          fxFlex="20"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          class="features-box"
+        >
+          <div class="icon"><i class="fa fa-globe-asia"></i></div>
+          <div class="nb-sec-heading">Trusted Partners</div>
+          <div class="benefit-text">
+            With years of industrial experience we are your trusted partners to
+            put you in a leading position with our products & solutions
+          </div>
+        </div>
+        <div
+          fxFlex="20"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          class="features-box"
+        >
+          <div class="icon"><i class="fa fa-bullhorn"></i></div>
+          <div class="nb-sec-heading">Business Services</div>
+          <div class="benefit-text">One step solution for Utility needs.</div>
+        </div>
+        <div
+          fxFlex="20"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          class="features-box"
+        >
+          <div class="icon"><i class="material-icons">high_quality</i></div>
+          <div class="nb-sec-heading">Quality products</div>
+          <div class="benefit-text">
+            Our commitment to quality is unrivalled in the industry and have
+            always proven it by offering energy efficient & innovative products.
+          </div>
+        </div>
+        <div
+          fxFlex="20"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          class="features-box"
+        >
+          <div class="icon"><i class="material-icons">event</i></div>
+          <div class="nb-sec-heading">After sales service</div>
+          <div class="benefit-text">
+            Our sales is backed with after sales service as we do undertake AMC
+            for Air Compressors & Chillers.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUNT US SECTION-->
+    <div
+      fxFlex="100"
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxFlexFill
+      fxLayoutGap="50px"
+      fxLayoutAlign="center start"
+    >
+      <div fxFlex="50" fxFlex.xs="100">
+        <mat-card style="box-shadow: unset !important">
+          <img
+            appLazyLoad
+            mat-card-image
+            src="assets/img/n_b_mercantile_about.jpg"
+            alt="About NB Mercantile Pvt. Ltd."
+            style="
+              box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+              border-radius: 5px !important;
+            "
+          />
+        </mat-card>
+      </div>
+
+      <div fxFlex="50" fxFlex.xs="100">
+        <div>
+          <h3 class="nb-heading" ngStyle.xs="text-align: center;">
+            All About Us
+          </h3>
+          <div class="section-heading-line line-thin"></div>
+          <div>
+            <p class="para-content">
+              NB Mercantile is an ISO 9001:2015 certified company with over 3
+              decades of excellence as an industrial solution provider, has
+              diversified in mining, cement textile and chemical industries with
+              almost 2000+ customer base. NB Mercantile has spreaded wings all
+              over Rajasthan with 6 offices. We are offering a range of
+              industrial solutions from oil to capital equipements to all
+              customers with a team of over 50+ committed family members, we
+              have become a synonym for trust and reliability. We constantly
+              deliver the best experience to our customers. Over the years, we
+              have persistently evolved to become one of India's leading
+              industrial solution providers. Our spirit to challenge convention
+              and think differently has pioneered several brand business
+              successes.
+            </p>
+            <p class="para-content">
+              We represent industry leaders such as Shell Lubricants, SKF
+              Lincoln, Xylem India, Victaulic Couplings, Atlas Copco Air
+              Compressor, EWAC Alloys, Karcher Cleaning Systems and many more as
+              our exclusive channel partner for Rajasthan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALUES-->
+    <!--   <div fxFlex="100" fxLayout="column" fxFlexFill fxLayoutAlign="center stretch">
+
+    <div fxFlex fxLayout="row wrap" fxLayout.xs="column wrap" fxLayoutAlign="space-around stretch">
+      <div fxFlex="45" fxLayout="column" fxLayoutAlign="start center" class="value-box">
+        <div class="nb-sec-heading">Our Mission</div>
+        <div class="text">Our mission is to make NBM preferred solution provider in all channels by delivering outstanding value, continuous innovation and exceptional after sales experiences by consistently fulfilling <span style="font-weight: 700;">" In service lies success"</span> brand promise.</div>
+      </div>
+      <div fxFlex="45" fxLayout="column" fxLayoutAlign="start center" class="value-box">
+        <div class="nb-sec-heading">Our Promise</div>
+        <div class="text">We place our customers at the heart of what we do. We provide excellent services, good value and high quality products.</div>
+      </div>
+      <div fxFlex="45" fxLayout="column" fxLayoutAlign="start center" class="value-box">
+        <div class="nb-sec-heading">Our Essence</div>
+        <div class="text">At our core, NBM operated on imagination, individuality, inclusivity and Impact.</div>
+      </div>
+      <div fxFlex="45" fxLayout="column" fxLayoutAlign="start center" class="value-box">
+        <div class="nb-sec-heading">Our Vibe</div>
+        <div class="text">At NBM, we make magic. We dream it, and then we do it-together-everyday reinventing what's possible.</div>
+      </div>
+    </div>
+
+  </div> -->
+
+    <!-- VALUES-->
+    <div
+      fxFlex="100"
+      fxLayout="column"
+      fxFlexFill
+      fxLayoutAlign="center stretch"
+    >
+      <div
+        fxFlex
+        fxLayout="row wrap"
+        fxLayout.xs="column wrap"
+        fxLayoutAlign="space-around stretch"
+      >
+        <div
+          fxFlex="24"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          class="value-card"
+        >
+          <div class="value-card-inner">
+            <div
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              class="value-card-front"
+            >
+              <button mat-fab><mat-icon>business_center</mat-icon></button>
+              <div style="padding: 16px" class="nb-sec-heading">
+                Our Mission
+              </div>
+            </div>
+            <div fxLayout="column" class="value-card-back">
+              <div class="nb-sec-heading back-header">Our Mission</div>
+              <p class="value-text">
+                Our mission is to make NBM preferred solution provider in all
+                channels by delivering outstanding value, continuous innovation
+                and exceptional after sales experiences by consistently
+                fulfilling
+                <span class="value-text-highlight"
+                  >" In service lies success"</span
+                >
+                brand promise.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          fxFlex="24"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          class="value-card"
+        >
+          <div class="value-card-inner">
+            <div
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              class="value-card-front"
+            >
+              <button mat-fab><mat-icon>local_offer</mat-icon></button>
+              <div style="padding: 16px" class="nb-sec-heading">
+                Our Promise
+              </div>
+            </div>
+            <div fxLayout="column" class="value-card-back">
+              <div class="nb-sec-heading back-header">Our Promise</div>
+              <p class="value-text">
+                We place our customers at the heart of what we do. We provide
+                excellent services, good value and high quality products.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          fxFlex="24"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          class="value-card"
+        >
+          <div class="value-card-inner">
+            <div
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              class="value-card-front"
+            >
+              <button mat-fab>
+                <mat-icon>miscellaneous_services</mat-icon>
+              </button>
+              <div style="padding: 16px" class="nb-sec-heading">
+                Our Essence
+              </div>
+            </div>
+            <div fxLayout="column" class="value-card-back">
+              <div class="nb-sec-heading back-header">Our Essence</div>
+              <p class="value-text">
+                At our core, NBM operated on imagination, individuality,
+                inclusivity and Impact
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          fxFlex="24"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          class="value-card"
+        >
+          <div class="value-card-inner">
+            <div
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              class="value-card-front"
+            >
+              <button mat-fab><mat-icon>toys</mat-icon></button>
+              <div style="padding: 16px" class="nb-sec-heading">Our Vibe</div>
+            </div>
+            <div fxLayout="column" class="value-card-back">
+              <div class="nb-sec-heading back-header">Our Vibe</div>
+              <p class="value-text">
+                At NBM, we make magic. We dream it, and then we do
+                it-together-everyday reinventing what's possible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUR SOLUTIONS SECTION-->
+    <div
+      *ngIf="showHomeContent"
+      #solutionContainer
+      fxFlex="100"
+      fxLayout="column"
+      fxFlexFill
+      fxLayoutGap="30px"
+      fxLayoutAlign="center center"
+      style="padding-top: 50px"
+    >
+      <div
+        fxFlex
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        style="width: 100%"
+        *ngIf="features.length > 0"
+      >
+        <div>
+          <img
+            src="assets/img/divider.png"
+            alt="Our Solutions"
+            style="margin-bottom: 20px"
+          />
+        </div>
+        <div class="nb-heading">Our Solutions</div>
+      </div>
+      <!-- <carousel *ngIf="features.length>0"
+      [height]="250" [margin]="5"
+      cellsToShow="{{(solutionContainer.offsetWidth/250)| number: '1.0-0'}}"
+      [arrows]="true"
+      [pauseOnHover]="'true'"
+      [loop]="'true'" [autoplay]="'true'" [autoplayInterval]="3000" [transitionDuration]="800"
+      >
+      <div class="carousel-cell" *ngFor="let feature of features">
+        <div class="rc-div" [ngStyle]="{'background-image': 'url('+feature.img+')'}">
+        <div class="data-box">
+          <p class="company-header">{{ feature.title }}</p>
+          <button mat-flat-button color="primary" (click)="viewSolution(feature)">
+            Explore
+          </button>
+        </div>
+        </div>
+      </div>
+    </carousel> -->
+    </div>
+
+    <!-- OUR CLIENT SECTION-->
+    <div
+      *ngIf="showHomeContent"
+      fxFlex="100"
+      fxLayout="column"
+      fxFlexFill
+      fxLayoutGap="30px"
+      fxLayoutAlign="center center"
+      style="padding-top: 50px"
+      class="client-company-container"
+    >
+      <div
+        fxFlex
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        style="width: 100%"
+      >
+        <div>
+          <img
+            src="assets/img/divider.png"
+            alt="Our Satisfied Customers"
+            style="margin-bottom: 20px"
+          />
+        </div>
+        <div class="nb-heading">Our Key Customers</div>
+      </div>
+      <!-- <carousel
+        *ngIf="companies.length > 0"
+        [height]="70"
+        [cellWidth]="160"
+        [margin]="5"
+        [cellsToScroll]="3"
+        arrows="true"
+        [pauseOnHover]="'true'"
+        [loop]="'true'"
+        [autoplay]="'true'"
+        [autoplayInterval]="3000"
+        [transitionDuration]="800"
+      >
+        <div
+          class="carousel-cell"
+          *ngFor="let company of companies | companyFilter: 'CLIENT':'ACTIVE'"
+        >
+          <img
+            appLazyLoad
+            [src]="company.logo"
+            alt="{{ company.name }}"
+            class="client-brand-logo"
+          />
+        </div>
+      </carousel> -->
+    </div>
+  </div>
+</div>
+
+<!--     <div fxFlex fxLayout="column" fxLayoutAlign="center center" style="width:50%;" [ngStyle.xs]="{'width': '100%'}">
+      <ng-container *ngIf="_customerService.companiesSub() | async | companyFilter:'CLIENT':'ACTIVE' as clientCompanies;">
+        <marquee behavior="alternate">
+          <ng-container *ngFor="let company of clientCompanies; let i=index;">
+            <img *ngIf="i%2==0" [src]="company.logo" alt="{{company.name}}" class="client-brand-logo"/>
+          </ng-container>
+        </marquee>
+        <marquee behavior="alternate">
+          <ng-container *ngFor="let company of clientCompanies; let j=index;">
+            <img *ngIf="j%2==1" [src]="company.logo" alt="{{company.name}}" class="client-brand-logo"/>
+          </ng-container>
+        </marquee>
+      </ng-container>
+    </div> -->
+
+<!--   <div *ngIf="showContact" fxFlex="100" fxLayout="row" fxLayout.xs="column" fxFlexFill fxLayoutGap="50px" fxLayoutAlign="center start">
+
+    <div fxFlex="50" fxFlex.xs="100">
+      <div>
+        <h3 class="nb-heading">Our Clients</h3>
+        <div class="section-heading-line line-thin"></div>
+        <div class="nb-content">
+            <p>We are confident we can provide you with the highest level of support with Technical knowledge and year of experience in this Industry. Our team knows what it takes to be the best and how we can help make your business a success.</p>
+        </div>
+      </div>
+    </div>
+   
+    <div fxFlex="50" fxFlex.xs="100">
+      <div fxLayout="row wrap" fxLayoutAlign="start start">
+        <ng-container *ngFor="let company of _customerService.companiesSub() | async | companyFilter:'CLIENT':'ACTIVE'">
+          <div fxFlex fxLayoutAlign="center center" style="padding: 10px;">
+            <img [src]="company.logo" alt="About NB Mercantile Co. Pvt. Ltd." style="width: 160px; height: 55px; box-shadow: 0 20px 30px rgba(0, 0, 0, .2); border-radius: 5px!important;"/>
+          </div>
+        </ng-container>
+        <mat-devider></mat-devider>
+      </div>
+    </div>
+
+  </div> -->

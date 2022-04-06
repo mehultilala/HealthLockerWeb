@@ -7,8 +7,8 @@ import {
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { retry, catchError, finalize } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
-import { LoadingSpinnerService } from './loading-spinner.service';
+import { AuthService } from './services/auth.service';
+import { LoadingSpinnerService } from './services/loading-spinner.service';
 
 @Injectable()
 export class UrlInterceptor implements HttpInterceptor {

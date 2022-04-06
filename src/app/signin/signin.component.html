@@ -1,0 +1,229 @@
+<div
+  class="login-container"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutWrap
+>
+  <div class="logo">
+    <img src="/assets/img/truckola_logo_tight.png" alt="" />
+  </div>
+  <div class="mat-card mat-elevation-z3 auth-form">
+    <div class="outlet">
+      <!-- <router-outlet></router-outlet> -->
+
+      <div
+        fxLayout="column"
+        fxLayoutAlign="start start"
+        fxLayoutWrap
+        class="login-panel"
+      >
+        <div class="login-progress full-width eql-margin" *ngIf="statusText">
+          {{ statusText }}
+        </div>
+        <div class="label-text full-width eql-margin">
+          Sign in to continue...
+        </div>
+        <form
+          [formGroup]="loginForm"
+          class="eql-margin"
+          (ngSubmit)="onSubmit()"
+          fxLayout="column"
+          fxLayoutWrap
+          fxLayoutGap="1em"
+          novalidate
+        >
+          <mat-form-field class="full-width">
+            <input
+              formControlName="userName"
+              matInput
+              placeholder="Email or Mobile(10 digits)"
+            />
+            <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">
+              Email or Mobile number is
+              <span class="err-highlight">required</span>
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('userName')?.hasError('pattern')">
+              Enter a <span class="err-highlight">valid</span> Email or Mobile
+              number.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input
+              formControlName="password"
+              type="password"
+              matInput
+              placeholder="Password"
+            />
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is <span class="err-highlight">required</span>
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+              Minimum 5 characters are
+              <span class="err-highlight">required</span>
+            </mat-error>
+          </mat-form-field>
+          <a
+            (click)="openForgotPasswordForm(forgotPasswordForm)"
+            style="text-decoration: none; color: inherit; display: contents"
+            class="mat-raised-button"
+            >Forgot password?</a
+          >
+          <div
+            fixLayout="row"
+            fxLayoutAlign="space-between center"
+            class="eql-margin full-width"
+            fxLayoutWrap
+          >
+            <button
+              mat-raised-button
+              class="col-sm-4 sign-in-btn"
+              color="primary"
+            >
+              SIGN IN
+            </button>
+            <a
+              [routerLink]="['register']"
+              class="mat-raised-button register-link"
+              >Don't have an account?</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #forgotPasswordForm>
+  <div fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap="1em">
+    <div
+      class="heading"
+      fxLayout="row"
+      fxLayoutGap="1rem"
+      fxLayoutAlign="start center"
+    >
+      <mat-icon>lock</mat-icon>
+      <h6>Forgot Password</h6>
+    </div>
+    <form
+      [formGroup]="forgotPassForm"
+      #form="ngForm"
+      fxLayout="row"
+      style="width: 100%"
+      fxLayoutAlign="start start"
+    >
+      <section fxLayout="column" fxLayoutGap="0.5em" style="width: 100%">
+        <mat-form-field class="full-width">
+          <input
+            formControlName="phone_number"
+            matInput
+            placeholder="Enter your mobile number"
+            maxlength="10"
+          />
+          <mat-error
+            *ngIf="forgotPassForm.get('phone_number')?.hasError('required')"
+          >
+            Mobile number is <span class="err-highlight">required</span>.
+          </mat-error>
+          <mat-error
+            *ngIf="forgotPassForm.get('phone_number')?.hasError('pattern')"
+          >
+            Mobile number is <span class="err-highlight">invalid</span>.
+          </mat-error>
+          <mat-error
+            *ngIf="forgotPassForm.get('phone_number')?.hasError('invalid')"
+          >
+            Mobile number does <span class="err-highlight">not exist!</span>
+          </mat-error>
+        </mat-form-field>
+      </section>
+    </form>
+    <div style="width: 100%; display: flex; place-content: space-between">
+      <button
+        (click)="mobile_no_submit(newPasswordForm)"
+        mat-raised-button
+        color="primary"
+      >
+        SUBMIT
+      </button>
+      <button mat-button color="warn" (click)="closeDialog()">CANCEL</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #newPasswordForm>
+  <div fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap="1em">
+    <div class="label-text">Verify your Mobile</div>
+    <form
+      [formGroup]="newPassForm"
+      (ngSubmit)="savePassword()"
+      #form="ngForm"
+      style="width: 230px"
+      fxLayout="row"
+      fxLayoutAlign="start start"
+    >
+      <section fxLayout="column" fxLayoutGap="0.5em" style="width: 100%">
+        <label class="light-text"
+          >OTP sent to <span class="phone-no">{{ phone_number() }}</span></label
+        >
+        <input
+          formControlName="phone_number"
+          matInput
+          placeholder="Enter your mobile number"
+          hidden
+        />
+        <mat-form-field class="full-width">
+          <input
+            formControlName="otp"
+            matInput
+            placeholder="Enter OTP"
+            maxlength="6"
+          />
+          <mat-error *ngIf="newPassForm.get('otp')?.hasError('required')">
+            OTP is <span class="err-highlight">required</span>.
+          </mat-error>
+          <mat-error *ngIf="newPassForm.get('otp')?.hasError('invalid')">
+            OTP is <span class="err-highlight">invalid/expired</span>.
+          </mat-error>
+          <mat-error *ngIf="newPassForm.get('otp')?.hasError('pattern')">
+            Please enter <span class="err-highlight">6 digit OTP</span> received
+            on your mobile.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input
+            formControlName="password"
+            type="password"
+            matInput
+            placeholder="Enter new password"
+          />
+          <mat-error *ngIf="newPassForm.get('password')?.hasError('required')">
+            Password is <span class="err-highlight">required</span>
+          </mat-error>
+          <mat-error *ngIf="newPassForm.get('password')?.hasError('minlength')">
+            Minimum 8 characters are <span class="err-highlight">required</span>
+          </mat-error>
+        </mat-form-field>
+        <div fxFlexAlign="end">
+          <span class="light-text">({{ timeOutText }} ) </span>
+          <a
+            mat-raised-button
+            (click)="resendOtp()"
+            style="text-decoration: none; color: inherit"
+            [disabled]="resendDisabled"
+            >Resend OTP</a
+          >
+        </div>
+      </section>
+    </form>
+    <div style="width: 100%; display: flex; place-content: space-between">
+      <button mat-raised-button color="primary">SUBMIT</button>
+      <button
+        mat-button
+        color="warn"
+        (click)="openForgotPasswordForm(forgotPasswordForm)"
+      >
+        BACK
+      </button>
+    </div>
+  </div>
+</ng-template>

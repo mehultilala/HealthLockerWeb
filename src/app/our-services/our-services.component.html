@@ -1,0 +1,210 @@
+<div fxFlex fxLayout="row" fxFlexFill fxLayoutAlign="center center">
+  <div
+    class="nb-container"
+    fxFlex="80"
+    fxFlex.lt-lg="100"
+    fxLayout="column"
+    fxLayoutGap="40px"
+  >
+    <ng-container *ngFor="let service of services; let i = index">
+      <div
+        fxFlex="100"
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxFlexFill
+        fxLayoutGap="50px"
+        fxLayoutGap.xs="0px"
+        fxLayoutAlign="center start"
+        fxLayoutAlign.xs="center center"
+        [id]="'service' + service.id"
+      >
+        <div
+          fxFlex="55"
+          fxFlex.xs="100"
+          fxFlexOrder="{{ i % 2 == 0 ? 1 : 2 }}"
+          fxFlexOrder.xs="1"
+        >
+          <img
+            appLazyLoad
+            [src]="service.img"
+            alt="Service: {{ service.name }} (NB Mercantile)"
+            class="service-image"
+          />
+        </div>
+
+        <div
+          fxFlex="45"
+          fxFlex.xs="100"
+          fxFlexOrder="{{ i % 2 == 1 ? 1 : 2 }}"
+          fxFlexOrder.xs="2"
+        >
+          <div
+            ngStyle.xs="padding: 0px;"
+            [ngStyle]="{
+              padding: i % 2 == 0 ? '24px 0px 0px 24px' : '24px 0px 0px 0px'
+            }"
+          >
+            <h3 class="heading">{{ service.name }}</h3>
+            <div class="section-heading-line line-thin"></div>
+            <div style="max-width: 440px">
+              <p class="content">{{ service.description }}</p>
+            </div>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openServiceRequestForm(sfTmpl, service.id)"
+            >
+              REQUEST A SERVICE
+            </button>
+            <button
+              *ngIf="service.siteLink"
+              mat-raised-button
+              style="margin-left: 20px"
+              (click)="openServiceSite(service.siteLink)"
+            >
+              VIEW MORE
+            </button>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #sfTmpl>
+  <div
+    fxFlex
+    fxLayout="column"
+    fxLayoutWrap
+    fxLayoutGap="1em"
+    fxLayoutAlign="start center"
+    style="margin: 30px"
+    [ngStyle.xs]="{ margin: '0px' }"
+  >
+    <div
+      class="nheading"
+      fxLayout="row"
+      fxLayoutGap="1em"
+      fxLayoutAlign="start center"
+    >
+      <mat-icon>event_available</mat-icon>
+      <div>Request Service</div>
+    </div>
+    <form
+      [formGroup]="sf"
+      (ngSubmit)="submit(sf)"
+      #form="ngForm"
+      fxFlex
+      fxLayout="column"
+      fxLayoutAlign="space-around start"
+      fxFlexAlign="center"
+      fxLayoutGap="2em"
+    >
+      <section fxLayout="column" fxLayoutGap="1em">
+        <mat-form-field fxFlex>
+          <mat-label>Service</mat-label>
+          <mat-select formControlName="serviceId">
+            <mat-option *ngFor="let service of services" [value]="service.id">
+              {{ service.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxLayout fxLayoutGap="1em" fxLayout.xs="column wrap">
+          <mat-form-field fxFlex>
+            <input
+              matInput
+              placeholder="Your Name"
+              required
+              title="Your Name"
+              formControlName="name"
+            />
+            <mat-error *ngIf="sf.get('name')?.hasError('required')">
+              Name is <span class="err-highlight">required</span>.
+            </mat-error>
+            <mat-error *ngIf="sf.get('name')?.hasError('minlength')">
+              Name should be of at least 5 character.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input
+              matInput
+              placeholder="Company Name"
+              required
+              title="Company Name"
+              formControlName="companyName"
+            />
+            <mat-error *ngIf="sf.get('companyName')?.hasError('required')">
+              Company Name is <span class="err-highlight">required</span>.
+            </mat-error>
+            <mat-error *ngIf="sf.get('companyName')?.hasError('minlength')">
+              Company Name should be of at least 5 character.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout fxLayoutGap="1em" fxLayout.xs="column wrap">
+          <mat-form-field fxFlex>
+            <input
+              matInput
+              placeholder="Email"
+              required
+              title="Your Email"
+              formControlName="email"
+            />
+            <mat-error *ngIf="sf.get('email')?.hasError('required')">
+              Email is <span class="err-highlight">required</span>.
+            </mat-error>
+            <mat-error *ngIf="sf.get('email')?.hasError('email')">
+              Email is <span class="err-highlight">invalid</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input
+              matInput
+              placeholder="Phone Number"
+              required
+              title="Your 10 Digit Phone Number"
+              formControlName="phoneNumber"
+              oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"
+            />
+            <mat-error *ngIf="sf.get('phoneNumber')?.hasError('required')">
+              Phone Number is <span class="err-highlight">required</span>.
+            </mat-error>
+            <mat-error *ngIf="sf.get('phoneNumber')?.hasError('pattern')">
+              Phone Number is <span class="err-highlight">invalid</span>.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field fxFlex>
+          <textarea
+            matInput
+            placeholder="Message/Enquiry"
+            required
+            title="Enquiry"
+            type="text"
+            rows="5"
+            formControlName="message"
+          ></textarea>
+          <mat-error *ngIf="sf.get('message')?.hasError('required')">
+            Message is <span class="err-highlight">required</span>.
+          </mat-error>
+          <mat-error *ngIf="sf.get('message')?.hasError('minlength')">
+            Message should be of at least 10 character long.
+          </mat-error>
+        </mat-form-field>
+      </section>
+      <div fxFlexAlign="end">
+        <button mat-raised-button color="primary" type="submit">SAVE</button>
+        <button mat-button color="warn" type="button" (click)="closeDialog()">
+          Cancel
+        </button>
+      </div>
+    </form>
+    <div *ngIf="progress > 0">
+      <mat-progress-bar
+        mode="determinate"
+        value="{{ progress }}"
+      ></mat-progress-bar>
+    </div>
+  </div>
+</ng-template>

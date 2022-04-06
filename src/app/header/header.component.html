@@ -1,0 +1,101 @@
+<button
+  fxHide="{{ !isMobile }}"
+  mat-button
+  (click)="toggleMenu()"
+  [ngClass]="{ 'mat-elevation-z3': true, 'sticky-icon-menu': isSticky }"
+  style="box-shadow: none !important; top: 5px"
+>
+  <mat-icon>menu</mat-icon>
+</button>
+
+<mat-toolbar
+  fxShow="{{ menuFlag }}"
+  [ngClass]="{
+    'mat-elevation-z3': true,
+    'sticky-toolbar': isSticky,
+    'mobile-menu': menuFlag && isMobile
+  }"
+>
+  <ng-container *ngTemplateOutlet="buttons"></ng-container>
+
+  <button
+    fxHide="{{ !isMobile || !menuFlag }}"
+    mat-button
+    (click)="toggleMenu()"
+    [ngClass]="{ 'mat-elevation-z3': true }"
+    style="box-shadow: none !important; right: 30px; top: 5px"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<!--Banner-->
+<div
+  *ngIf="title"
+  class="breadcrumb-section"
+  [ngStyle]="{ 'background-image': 'url(' + bannerPath + ')' }"
+>
+  <div class="container text-center">
+    <h1>{{ title }}</h1>
+    <ul>
+      <li>
+        <button mat-button [routerLink]="['home']">Home&nbsp;&nbsp;/</button>
+      </li>
+      <li>
+        <button mat-button type="button">{{ title }}</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<ng-template #buttons>
+  <button
+    mat-button
+    [routerLink]="['home']"
+    (click)="toggleMenu()"
+    class="menu-font"
+  >
+    <img
+      [src]="'/assets/img/n_b_mercantile_header_logo.png'"
+      alt="NB Mercantile"
+      class="header-logo"
+    />
+  </button>
+  <button
+    mat-button
+    [routerLink]="['our-services']"
+    (click)="toggleMenu()"
+    class="menu-font"
+    routerLinkActive="active-link-cls"
+  >
+    SERVICES
+  </button>
+  <button
+    mat-button
+    [routerLink]="['about-us']"
+    (click)="toggleMenu()"
+    class="menu-font"
+    routerLinkActive="active-link-cls"
+  >
+    ABOUT US
+  </button>
+  <button
+    mat-button
+    [routerLink]="['contact-us']"
+    (click)="toggleMenu()"
+    class="menu-font"
+    routerLinkActive="active-link-cls"
+  >
+    CONTACT US
+  </button>
+  <button
+    mat-button
+    *ngIf="_authService.authenticated"
+    [routerLink]="['dashboard']"
+    (click)="toggleMenu()"
+    class="menu-font"
+    routerLinkActive="active-link-cls"
+  >
+    DASHBOARD
+  </button>
+</ng-template>

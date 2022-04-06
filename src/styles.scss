@@ -1,4 +1,462 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+@import "style-common.scss";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+//$n_b_mercantile-primary: mat-palette($mat-indigo);
+//$n_b_mercantile-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+//$n_b_mercantile-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+//$n_b_mercantile-theme: mat-light-theme($n_b_mercantile-primary, $n_b_mercantile-accent, $n_b_mercantile-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+//@include angular-material-theme($n_b_mercantile-theme);
+
+$md-n_b_mercantile-accent: (
+  50: #e4e4e4,
+  100: #bdbdbd,
+  200: #919191,
+  300: #646464,
+  400: #434343,
+  500: #222222,
+  600: #1e1e1e,
+  700: #191919,
+  800: #141414,
+  900: #0c0c0c,
+  A100: #e76c6c,
+  A200: #e04040,
+  A400: #ec0000,
+  A700: #d30000,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$md-n_b_mercantile-primary: (
+  50: #f9e6e7,
+  100: #f0c2c2,
+  200: #e79999,
+  300: #dd7070,
+  400: #d55152,
+  500: #ce3233,
+  600: #c92d2e,
+  700: #c22627,
+  800: #bc1f20,
+  900: #b01314,
+  A100: #ffe1e1,
+  A200: #ffaeaf,
+  A400: #ff7b7c,
+  A700: #ff6263,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$md-n_b_mercantile-warn: (
+  50: #ffe0e0,
+  100: #ffb3b3,
+  200: #ff8080,
+  300: #ff4d4d,
+  400: #ff2626,
+  500: #ff0000,
+  600: #ff0000,
+  700: #ff0000,
+  800: #ff0000,
+  900: #ff0000,
+  A100: #ffffff,
+  A200: #fff2f2,
+  A400: #ffbfbf,
+  A700: #ffa6a6,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$n_b_mercantile-typography: mat-typography-config(
+  $font-family: "Poppins, sans-serif;",
+);
+
+$n_b_mercantile-primary: mat-palette($md-n_b_mercantile-primary);
+$n_b_mercantile-accent: mat-palette($md-n_b_mercantile-accent);
+$n_b_mercantile-warn: mat-palette($md-n_b_mercantile-warn);
+
+$n_b_mercantile-theme: mat-light-theme(
+  $n_b_mercantile-primary,
+  $n_b_mercantile-accent,
+  $n_b_mercantile-warn
+);
+
+@include angular-material-theme($n_b_mercantile-theme);
+@include angular-material-typography($n_b_mercantile-typography);
+
+/* snakebar customization */
+
+@mixin snack-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  //Default set
+  .mat-snack-bar-container {
+    background-color: #232323 !important;
+    color: white !important;
+    .mat-simple-snackbar {
+      font-size: $sm-text-size !important;
+    }
+    button {
+      color: white !important;
+      transition: transform 0.2s !important;
+      opacity: 0.8 !important;
+    }
+    button:hover {
+      opacity: 1 !important;
+      transform: scale(1.2) !important;
+    }
+  }
+
+  //Added with panelClass property
+  .snack-info {
+    background-color: #5bc0de !important;
+    color: white !important;
+  }
+  .snack-success {
+    background-color: #5cb85c !important;
+    color: white !important;
+  }
+  .snack-warn {
+    background-color: #f0ad4e !important;
+    color: white !important;
+  }
+  .snack-error {
+    background-color: #d9534f !important;
+    color: white !important;
+  }
+}
+
+@include snack-theme($n_b_mercantile-theme);
+
+/* ends: snakebar customization */
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*body * {
+  -webkit-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}*/
+
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+/* global custom styles*/
+button {
+  font-size: $xsx-text-size !important;
+}
+
+.background-color {
+  background-color: $background-color;
+}
+
+.nb-container {
+  padding: 100px 10px;
+}
+
+@media screen and (max-width: 599px) {
+  .nb-container {
+    padding: 50px 10px !important;
+  }
+}
+
+.nb-heading {
+  color: $heading-color;
+  font-size: $xxl-text-size !important;
+  font-weight: 600 !important;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 599px) {
+  .nb-heading {
+    font-size: $xlx-text-size !important;
+    font-weight: 600 !important;
+  }
+}
+
+.nb-sec-heading {
+  font-size: $lg-text-size !important;
+  font-weight: 500 !important;
+  color: $heading-color;
+  line-height: 130%;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 599px) {
+  .nb-sec-heading {
+    font-size: $mdx-text-size !important;
+    font-weight: 500 !important;
+  }
+}
+
+.nb-desc {
+  font-size: $smx-text-size !important;
+  font-weight: 400 !important;
+  word-break: break-word;
+  color: dimgrey;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 599px) {
+  .nb-desc {
+    font-size: $smx-text-size !important;
+    font-weight: 400 !important;
+  }
+}
+
+.err-highlight {
+  font-weight: 500;
+}
+
+.nb-word-wrap {
+  word-break: break-word;
+}
+
+.nb-imgage {
+  border-radius: 4px;
+  max-width: 100%;
+  margin: 8px 0px !important;
+}
+
+.hover-zoom {
+  transition-duration: 0.3s;
+  &:hover {
+    transform: scale(1.04);
+  }
+}
+
+/* box layouts */
+
+.nb-box {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 2px;
+  opacity: 1;
+  margin: 1%;
+  padding: 10px;
+  .heading {
+    @extend .nb-sec-heading;
+  }
+  div {
+    padding: 5px;
+  }
+  &:hover {
+    background: #f3f3f3;
+  }
+}
+
+.box3 {
+  @extend .nb-box;
+  box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+  place-content: center;
+  align-items: center;
+  max-width: 30%;
+  width: 30%;
+  border-radius: 4px;
+  padding: 5px;
+  .img-in-box {
+    @extend .nb-imgage;
+  }
+}
+
+.box4 {
+  @extend .nb-box;
+  box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+  place-content: center;
+  align-items: center;
+  max-width: 21%;
+  width: 22%;
+  margin: 1.5%;
+  border-radius: 4px;
+  padding: 5px;
+  .img-in-box {
+    @extend .nb-imgage;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .box3,
+  .box4 {
+    width: 90% !important;
+    max-width: 90% !important;
+  }
+}
+
+/* ends: box layouts */
+
+/* FORM */
+
+form {
+  .mat-form-field {
+    min-width: 210px !important;
+  }
+}
+
+/* MAT DIALOG */
+.cdk-global-overlay-wrapper {
+  overflow: auto;
+  pointer-events: auto;
+}
+
+/* DASHBOAR - UPDATE PAGES*/
+.min-height-router-element {
+  min-height: 200px;
+}
+
+/* DASHBOARD - UPDATE PAGE TASK LIST*/
+.task-item-list {
+  transition-duration: 0.3s !important;
+  .item {
+    &:hover {
+      transform: scale(1.04) !important;
+      background: #f3f3f3 !important;
+    }
+    width: 20% !important;
+    min-width: 300px !important;
+    .item-id {
+      font-size: $md-text-size !important;
+      color: black !important;
+    }
+  }
+  button {
+    color: #aaa !important;
+    height: 40px !important;
+  }
+}
+
+.carousel > button {
+  .mat-icon {
+    height: 40px !important;
+    width: 40px !important;
+    font-size: 40px !important;
+    line-height: 40px !important;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .carousel > button {
+    .mat-icon {
+      height: 32px !important;
+      width: 32px !important;
+      font-size: 32px !important;
+      line-height: 32px !important;
+    }
+  }
+}
+
+.filter-div {
+  min-width: 100%;
+  font-size: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.filter-field {
+  min-width: 250px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.filter-option {
+  font-size: 13px;
+  font-weight: 500;
+}

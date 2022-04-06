@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, mergeMap } from 'rxjs';
-import { LocalstorageService } from 'src/app/LocalstorageService';
+import { LocalstorageService } from './LocalstorageService';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +30,7 @@ export class ProfileService {
 
   setCurrentUser(userObj: any) {
     this.currentUser = userObj;
-    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    this._localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
   }
 
   private updatePassword(input: any) {

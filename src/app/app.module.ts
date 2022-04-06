@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,20 +10,33 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './custom-material.module';
-import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
 import { LoadingSpinnerComponent } from './common/components/loading-spinner.component';
 import { UrlInterceptor } from './common/url.interceptor';
+
+import { HeaderComponent } from './header/header.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { OurServicesComponent } from './our-services/our-services.component';
+
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    HeaderComponent,
     FooterComponent,
-    MenuListItemComponent,
+    AboutusComponent,
+    ContactusComponent,
+    OurServicesComponent,
     LoadingSpinnerComponent,
+    SigninComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

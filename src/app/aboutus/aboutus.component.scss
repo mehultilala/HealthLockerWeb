@@ -1,0 +1,202 @@
+@import './../../style-common.scss';
+
+.client-box {
+  max-width:1150px;
+}
+
+
+.para-content {
+  font-size: $md-text-size!important;
+  font-weight: 400!important;
+  color: $paragraph-color;
+  line-height: 190%;
+  margin-bottom: 15px;
+  text-align: left!important;
+  word-break: break-word;
+}
+
+@media screen and (max-width: 599px) {
+  .para-content {
+    font-size: $sm-text-size!important;
+  }
+}
+
+.features-box {
+  .icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    transform: rotate(45deg);
+    background-image: linear-gradient(to bottom, rgba(243, 163, 46, .15), transparent);
+    text-align:center;
+  }
+
+  i {
+    display: block;
+    color: #f3a32e;
+    font-size: 60px;
+    transform: translateY(40px) rotate(-45deg);
+  }
+
+  .benefit-text {
+    font-size: $sm-text-size !important;
+    font-weight: 400 !important;
+    color: #777;
+    line-height: 190%;
+    margin-bottom: 15px;
+    text-align: center !important;
+    max-width: 220px;
+  }
+
+}
+
+.value-box {
+  min-height: 150px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background-color: #f3a32e;
+  color: white;
+  .text {
+    font-size: $smx-text-size !important;
+  }
+}
+
+/**
+.client-brand-logo {
+  margin: 8px;
+  width: 160px;
+  height: 70px;
+}
+
+@media screen and (max-width: 399px) {
+  .client-brand-logo {
+    width: 130px;
+    height: 45px;
+  }
+}
+*/
+
+/** VALUE CARD*/
+.value-card {
+  height: 300px;
+  margin-top: 16px;
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.value-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.value-card:hover .value-card-inner {
+  transform: rotateY(180deg);
+}
+
+.value-card-front, .value-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.value-card-front {
+  button {
+    width: 140px;
+    height: 140px;
+    border: 2px solid #a5a6aa;
+    background-color: transparent;
+    box-shadow:none;
+    mat-icon {
+      height: 70px;
+      width: 70px;
+      font-size:70px;
+      color: #e34231;
+    }
+  }
+  .nb-sec-heading {
+    font-size: $mdx-text-size !important;
+  }
+}
+
+.value-card-back {
+  background-color: #f3a32e;
+  color: white;
+  transform: rotateY(180deg);
+  .back-header{
+    font-size: $mdx-text-size !important;
+    padding: 16px;
+    border-bottom: 2px solid #ffffff;
+  }
+  .value-text {
+    max-width: 90%;
+    margin: 10px auto;
+    font-size: $sm-text-size !important;
+    font-weight: 400 !important;
+    color: white;
+    line-height: 160%;
+    letter-spacing: .3px;
+    &::first-letter{
+      font-size: $mdx-text-size !important;
+    }
+  }
+  .value-text-highlight {
+    @extend .value-text;
+    font-weight: 600 !important;
+    font-style: italic!important;
+  }
+}
+
+
+.rc-div{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.data-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  .company-header {
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+    line-height: 100%;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .company-about {
+    max-width: 450px;
+    color: white;
+    padding: 20px;
+    font-size: $md-text-size;
+  }
+
+  button {
+    font-size: $sm-text-size!important;
+  }
+}
+
+
+@media screen and (max-width: 599px) {
+  ::ng-deep .client-company-container .carousel-arrows{
+	display: none;
+  }
+}

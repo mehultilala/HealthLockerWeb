@@ -1,0 +1,85 @@
+@import "./../../style-common.scss";
+
+::ng-deep carousel {
+  z-index: auto !important;
+}
+
+::ng-deep div.company-carousel ~ carousel .carousel-arrow-prev {
+  left: 40px !important;
+}
+
+::ng-deep div.company-carousel ~ carousel .carousel-arrow-next {
+  right: 40px !important;
+}
+
+.rc-div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.data-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .company-header {
+    font-size: 45px;
+    font-weight: 800;
+    color: white;
+    line-height: 100%;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .company-about {
+    max-width: 450px;
+    color: white;
+    padding: 20px;
+    font-size: $md-text-size;
+  }
+
+  button {
+    font-size: $sm-text-size !important;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .data-box {
+    .company-header {
+      font-size: $xlxx-text-size;
+      max-width: 80%;
+    }
+
+    .company-about {
+      width: 80%;
+      text-align: center;
+      padding: unset;
+      font-size: $xsx-text-size;
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .data-box {
+    .company-header {
+      font-size: $xlx-text-size;
+      max-width: 80%;
+    }
+
+    .company-about {
+      display: none;
+    }
+
+    button {
+      font-size: $xsx-text-size !important;
+    }
+  }
+}
