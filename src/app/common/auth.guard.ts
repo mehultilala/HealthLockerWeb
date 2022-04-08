@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   CanActivateChild,
+  CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router,
@@ -10,25 +11,31 @@ import { AuthService } from './services/auth.service';
 // import { ProfileService } from '../core/api/profile.service';
 
 @Injectable()
-export class AuthGuard implements CanActivateChild {
+export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private _router: Router,
     private _authService: AuthService // private _pService: ProfileService
   ) {}
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    if (this._authService.authenticated) {
+      return true;
+    }
+    this._router.navigate(['/home']);
+    return false;
+  }
 
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (this._authService.authenticated) {
-      if (this.allowIf(state)) {
-        return true;
-      } else {
-        this._router.navigate(['/dashboard', 'agreement']);
-        return false;
-      }
+      return true;
     }
-    this._router.navigate(['/auth']);
+    this._router.navigate(['/home']);
     return false;
   }
 

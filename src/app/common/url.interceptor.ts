@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
 import { retry, catchError, finalize } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
 import { LoadingSpinnerService } from './services/loading-spinner.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class UrlInterceptor implements HttpInterceptor {
@@ -39,7 +40,8 @@ export class UrlInterceptor implements HttpInterceptor {
   }
 
   private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {
-    if (!!this._authService.getToken())
+    const isApiUrl = request.url.startsWith(environment.serverUrl);
+    if (!!this._authService.getToken() && isApiUrl)
       return request.clone({
         headers: request.headers.set(
           'Authorization',

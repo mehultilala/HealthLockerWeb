@@ -1,0 +1,222 @@
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" style="text-align: left">
+      <p *ngIf="crudOperation === 'ViewAll'">Patient Master</p>
+      <p *ngIf="crudOperation === 'Create'">Add Patient</p>
+    </div>
+    <div fxFlex="75%" style="text-align: right">
+      <button
+        mat-raised-button
+        *ngIf="crudOperation === 'ViewAll'"
+        (click)="crudOperationChange('Create')"
+      >
+        Add Patient
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="crudOperation === 'Create'"
+        (click)="crudOperationChange('SetCrudOperation', 'ViewAll')"
+      >
+        View Patient
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="content" *ngIf="crudOperation === 'ViewAll'">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div
+      fxFlex="25%"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let num of [1, 2, 3, 4, 5, 6, 7]"
+    >
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <!-- <img
+            src="/assets/img/ewac_maintenance_and_repair_services_img.jpg"
+            mat-card-avatar
+          /> -->
+          <!-- <mat-icon mat-card-avatar>home</mat-icon> -->
+          <svg
+            mat-card-avatar
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xml:space="preserve"
+            style="
+              shape-rendering: geometricPrecision;
+              text-rendering: geometricPrecision;
+              image-rendering: optimizeQuality;
+              fill-rule: evenodd;
+              clip-rule: evenodd;
+            "
+            viewBox="0 0 42 42"
+          >
+            <g id="UrTavla">
+              <circle
+                style="
+                  fill: url(#toning);
+                  stroke: #010101;
+                  stroke-width: 2;
+                  stroke-miterlimit: 10;
+                "
+                cx="20"
+                cy="20"
+                r="20"
+              ></circle>
+
+              <text
+                x="50%"
+                y="50%"
+                stroke="#000"
+                text-anchor="middle"
+                stroke-width="1"
+                dx="1"
+                dy="6"
+                font-size="15"
+              >
+                {{ "A" + num }}
+              </text>
+            </g>
+          </svg>
+          <mat-card-title>Himalayan Peaks {{ num }}</mat-card-title>
+          <mat-card-subtitle>Himalayan Peaks {{ num }}</mat-card-subtitle>
+        </mat-card-header>
+        <!-- <img
+          mat-card-image
+          src="/assets/img/ewac_maintenance_and_repair_services_img.jpg"
+        /> -->
+        <mat-card-content>
+          <div
+            style="background-color: #87ceeb; padding: 30px 10px; color: black"
+          >
+            <h2 style="text-align: center">Apr 2021 - Mar 2022</h2>
+            <p style="text-align: center">Verified</p>
+          </div>
+
+          <p>The Himalayas is a mountain range in Asia.</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+          <div fxFlex></div>
+          <button mat-icon-button style="color: #87ceeb; font-size: 20px">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontSet="material-icons-outlined"
+              >account_circle</mat-icon
+            >
+          </button>
+          <button mat-icon-button style="color: #87ceeb; font-size: 20px">
+            <span class="material-icons-outlined"> settings </span>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="content" *ngIf="crudOperation === 'Create'" fxLayout="column">
+  <ng-container *ngTemplateOutlet="pfTmpl"></ng-container>
+</div>
+
+<ng-template #pfTmpl>
+  <div
+    fxFlex
+    fxLayout="column"
+    fxLayoutWrap
+    fxLayoutGap="1em"
+    fxLayoutAlign="start start"
+    style="margin: 30px; margin-bottom: 10px"
+  >
+    <form
+      [formGroup]="patientForm"
+      (ngSubmit)="submit(patientForm)"
+      #form="ngForm"
+      fxFlex
+      fxLayout="column"
+      fxLayoutAlign="space-around start"
+      fxFlexAlign="start"
+      fxLayoutGap="5em"
+    >
+      <section fxLayout="column" fxLayoutWrap fxLayoutGap="1em">
+        <div
+          class="row"
+          fxLayout
+          fxLayoutGap="2em"
+          fxLayout.xs="column wrap"
+          fxLayoutGap.xs=".5em"
+        >
+          <mat-form-field fxFlex>
+            <mat-label>Patient Name</mat-label>
+            <input
+              matInput
+              placeholder="Name of the patient"
+              title="Patient Name"
+              formControlName="name"
+            />
+            <mat-error *ngIf="patientForm.get('name')?.hasError('required')">
+              Patient Name is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Date of Birth</mat-label>
+            <input
+              matInput
+              placeholder="Date of Birth (MM/DD/YYYY)"
+              [matDatepicker]="dobPicker"
+              formControlName="dateOfBirth"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dobPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dobPicker></mat-datepicker>
+            <mat-error
+              *ngIf="patientForm.get('dateOfBirth')?.hasError('required')"
+            >
+              Date of Birth is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div
+          class="row"
+          fxLayout
+          fxLayoutGap="2em"
+          fxLayout.xs="column wrap"
+          fxLayoutGap.xs=".5em"
+        >
+          <mat-form-field fxFlex>
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option
+                *ngFor="let genderValue of genderList"
+                [value]="genderValue"
+              >
+                {{ genderValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="patientForm.get('gender')?.hasError('required')">
+              Gender is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </section>
+      <div fxFlexAlign="end">
+        <button mat-raised-button color="primary" type="submit">
+          Save Patient
+        </button>
+        <button mat-button color="warn" type="button" (click)="closeDialog()">
+          Cancel
+        </button>
+      </div>
+    </form>
+    <div *ngIf="progress > 0">
+      <mat-progress-bar
+        mode="determinate"
+        value="{{ progress }}"
+      ></mat-progress-bar>
+    </div>
+  </div>
+</ng-template>

@@ -6,9 +6,11 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { HomeComponent } from './home/home.component';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthGuard } from './common/auth.guard';
+import { BypassGuard } from './common/bypass.guard';
+import { PatientMasterComponent } from './patient-master/patient-master.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   {
     path: '',
     redirectTo: '/home',
@@ -29,9 +31,15 @@ const routes: Routes = [
   {
     path: 'contact-us',
     component: ContactusComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'sign-in', component: SigninComponent },
-  { path: 'sign-up', component: SignupComponent },
+  {
+    path: 'patient-master',
+    component: PatientMasterComponent,
+    // canActivate: [AuthGuard],
+  },
+  { path: 'sign-in', component: SigninComponent, canActivate: [BypassGuard] },
+  { path: 'sign-up', component: SignupComponent, canActivate: [BypassGuard] },
   { path: '**', redirectTo: 'home' },
 ];
 

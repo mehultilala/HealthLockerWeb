@@ -21,6 +21,10 @@ import { OurServicesComponent } from './our-services/our-services.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 
+import { BypassGuard } from './common/bypass.guard';
+import { AuthGuard } from './common/auth.guard';
+import { PatientMasterComponent } from './patient-master/patient-master.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +37,7 @@ import { SignupComponent } from './signup/signup.component';
     LoadingSpinnerComponent,
     SigninComponent,
     SignupComponent,
+    PatientMasterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -44,6 +49,8 @@ import { SignupComponent } from './signup/signup.component';
     MaterialModule,
   ],
   providers: [
+    BypassGuard,
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

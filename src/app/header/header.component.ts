@@ -24,14 +24,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   title: string = '';
   path: string = '';
   absPath = '/assets/img/';
-  bannerPath = this.absPath + 'n_b_mercantile_about.jpg';
-  defaultBanner = this.absPath + '/our_services_banner.jpg';
+  bannerPath = this.absPath + 'about_us_banner.jpg';
+  defaultBanner = this.absPath + '/about_us_banner.jpg';
 
   sidebarRoutes: any[] = [
     {
       path: '/home',
       title: 'NB Mercantile',
-      bannerPath: '',
+      bannerPath: this.absPath + 'about_us_banner.jpg',
     },
     {
       path: '/our-services',
@@ -46,6 +46,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     {
       path: '/contact-us',
       title: 'Contact Us',
+      bannerPath: this.absPath + 'contact_us_banner.jpg',
+    },
+    {
+      path: '/patient-master',
+      title: 'Patient Master',
       bannerPath: this.absPath + 'contact_us_banner.jpg',
     },
   ];
@@ -93,10 +98,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
    */
   setPageTitleAndBanner(url: any): void {
     try {
-      if (url === '/home') {
-        this._windowTitle.setTitle(this.sidebarRoutes[0].title);
-        this.title = '';
-      } else if (url.startsWith('/dashboard')) {
+      if (url.startsWith('/dashboard')) {
         this.title = 'Dashboard Front';
         this._windowTitle.setTitle('Dashboard');
         this.bannerPath = this.defaultBanner;
