@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   ) {}
   registerForm!: FormGroup;
   signUpStatusSub!: Subscription;
-  statusText: String = '';
+  statusText: string = '';
 
   ngOnInit() {
     this._auth.signUpProgress.next('');

@@ -1,5 +1,9 @@
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { Constants } from '../common/constants';
+import { AppService } from '../common/services/app.service';
 
 @Component({
   selector: 'app-patient-master',
@@ -7,13 +11,22 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./patient-master.component.scss'],
 })
 export class PatientMasterComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private constants: Constants,
+    private fb: FormBuilder,
+    private _appService: AppService,
+    private _http: HttpClient
+  ) {}
 
   ngOnInit(): void {}
 
   crudOperation: string = 'ViewAll';
 
-  genderList: String[] = ['Male', 'Female', 'Other'];
+  genderList: string[] = this.constants.GENDER_LIST;
+  maritalStatusList: string[] = this.constants.MARITAL_STATUS_LIST;
+  religionList: string[] = this.constants.RELIGION_LIST;
+  countryList: string[] = this.constants.COUNTRY_LIST;
+  addressTypeList: string[] = this.constants.ADDRESS_TYPE_LIST;
 
   progress: Number = 0;
 
@@ -24,7 +37,7 @@ export class PatientMasterComponent implements OnInit {
     maritalStatus: [''],
     religion: [''],
     adharNo: ['', [Validators.minLength(12), Validators.maxLength(12)]],
-    medicalInsured: [[false, Validators.required]],
+    medicalInsured: [false, [Validators.required]],
     medicalInsurance: this.fb.group({
       company: [''],
       number: [''],
@@ -54,18 +67,92 @@ export class PatientMasterComponent implements OnInit {
       this.crudOperation = action;
     } else if (action === 'Create') {
       this.crudOperation = action;
+      this.patientForm.patchValue({
+        name: 'Mehul GovindBhai Tilala',
+        dateOfBirth: '1993-10-10T18:30:00.000Z',
+        gender: 'Male',
+        maritalStatus: 'Married',
+        religion: 'Hindu',
+        adharNo: '123412341234',
+        fatherName: 'Govindbhai',
+        motherName: 'Sudhaben',
+        spouceName: 'Jyoti',
+        phone: '8758748221',
+        email: 'mehultilala1993@gmail.com',
+        addressObj: {
+          address: 'pal',
+          city: 'rajkot',
+          state: 'gujarat',
+          country: 'India',
+          pin: '360004',
+          addressType: 'Home',
+        },
+        emergencyContact: {
+          fullName: 'pradip',
+          relationship: 'brother',
+          phone: '8758727258',
+        },
+      });
     } else if (action === 'SetCrudOperation') {
       this.crudOperation = data;
     }
   }
 
-  submit(form: any) {
-    console.log(this.patientForm.value);
+  submit(data: any) {
     if (this.patientForm.invalid) {
-      //this._appService.args$.next(['Please enter required Details!', 'warn', '2000']);
+      this._appService.args$.next([
+        'Please enter required details!',
+        'warn',
+        '2000',
+      ]);
       return;
     }
-  }
 
+    let postData: any = { ...data.value };
+
+    if (postData.medicalInsured) {
+      if (
+        !postData.medicalInsurance.company ||
+        !postData.medicalInsurance.number
+      ) {
+        this._appService.args$.next([
+          'Please enter valid insurance details!',
+          'warn',
+          '2000',
+        ]);
+        return;
+      }
+      delete postData.medicalInsured;
+    } else {
+      delete postData.medicalInsured;
+      delete postData.medicalInsurance;
+    }
+
+    this._http
+      .post(`${environment.serverUrl}/api/patients/`, postData, {
+        reportProgress: true,
+        observe: 'events',
+      })
+      .subscribe({
+        next: (event: any) => {
+          if (event.type === HttpEventType.UploadProgress)
+            this.progress = Math.round((100 * event.loaded) / event.total);
+          if (event.type === HttpEventType.Response)
+            this._appService.args$.next([
+              'Patient created successfully!',
+              'success',
+              '3000',
+            ]);
+        },
+        error: (err: any) => {
+          this._appService.args$.next([
+            'Something went wrong!',
+            'error',
+            '2000',
+          ]);
+        },
+      });
+    return true;
+  }
   closeDialog() {}
 }

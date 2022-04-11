@@ -33,7 +33,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   profSub!: Subscription;
   loginForm!: FormGroup;
   signInStatusSub!: Subscription;
-  statusText!: String;
+  statusText!: string;
   success_msg: any;
   phone_no: any;
   forgotPassForm!: FormGroup;

@@ -201,7 +201,370 @@
               Gender is <span class="err-highlight">required</span>.
             </mat-error>
           </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Marital Status</mat-label>
+            <mat-select formControlName="maritalStatus">
+              <mat-option
+                *ngFor="let maritalStatusValue of maritalStatusList"
+                [value]="maritalStatusValue"
+              >
+                {{ maritalStatusValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="patientForm.get('maritalStatus')?.hasError('required')"
+            >
+              Marital Status is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Religion</mat-label>
+            <mat-select formControlName="religion">
+              <mat-option
+                *ngFor="let religionValue of religionList"
+                [value]="religionValue"
+              >
+                {{ religionValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="patientForm.get('religion')?.hasError('required')"
+            >
+              Religion is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
         </div>
+        <div
+          class="row"
+          fxLayout
+          fxLayoutGap="2em"
+          fxLayout.xs="column wrap"
+          fxLayoutGap.xs=".5em"
+        >
+          <mat-form-field fxFlex>
+            <mat-label>Adhar Number</mat-label>
+            <input
+              matInput
+              placeholder="Adhar Card Number (For Indian Patients)"
+              formControlName="adharNo"
+            />
+            <mat-error *ngIf="patientForm.get('adharNo')?.hasError('required')">
+              Adhar Number is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <div fxFlex>
+            <mat-label>Medial Insured?</mat-label>
+            <br />
+            <mat-radio-group
+              aria-label="Select an option"
+              formControlName="medicalInsured"
+            >
+              <mat-radio-button [value]="true"> Yes</mat-radio-button>
+              <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <form
+            formGroupName="medicalInsurance"
+            fxFlex
+            *ngIf="patientForm.get('medicalInsured')?.value"
+          >
+            <mat-form-field fxFlex>
+              <mat-label>Insurance Company Name</mat-label>
+              <input
+                matInput
+                placeholder="Insurance Company Name"
+                formControlName="company"
+              />
+              <mat-error
+                *ngIf="
+                  patientForm
+                    .get('medicalInsurance')
+                    ?.get('company')
+                    ?.hasError('required')
+                "
+              >
+                Insurance Company name is
+                <span class="err-highlight">required</span>.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex>
+              <mat-label>Insurance Number</mat-label>
+              <input
+                matInput
+                placeholder="Insurance Number"
+                formControlName="number"
+              />
+              <mat-error
+                *ngIf="
+                  patientForm
+                    .get('medicalInsurance')
+                    ?.get('number')
+                    ?.hasError('required')
+                "
+              >
+                Insurance Number is <span class="err-highlight">required</span>.
+              </mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+        <div
+          class="row"
+          fxLayout
+          fxLayoutGap="2em"
+          fxLayout.xs="column wrap"
+          fxLayoutGap.xs=".5em"
+        >
+          <mat-form-field fxFlex>
+            <mat-label>Father's Name</mat-label>
+            <input
+              matInput
+              placeholder="Father's Name"
+              formControlName="fatherName"
+            />
+            <mat-error
+              *ngIf="patientForm.get('fatherName')?.hasError('required')"
+            >
+              Father's Name is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Mother's Name</mat-label>
+            <input
+              matInput
+              placeholder="Mother's Name"
+              formControlName="motherName"
+            />
+            <mat-error
+              *ngIf="patientForm.get('motherName')?.hasError('required')"
+            >
+              Mother's Name is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Spouce's Name</mat-label>
+            <input
+              matInput
+              placeholder="Spouce's Name"
+              formControlName="spouceName"
+            />
+            <mat-error
+              *ngIf="patientForm.get('spouceName')?.hasError('required')"
+            >
+              Spouce's Name is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div
+          class="row"
+          fxLayout
+          fxLayoutGap="2em"
+          fxLayout.xs="column wrap"
+          fxLayoutGap.xs=".5em"
+        >
+          <mat-form-field fxFlex>
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              placeholder="Phone Number"
+              formControlName="phone"
+            />
+            <mat-error *ngIf="patientForm.get('phone')?.hasError('required')">
+              Phone Number is <span class="err-highlight">required</span>.
+            </mat-error>
+            <mat-error *ngIf="patientForm.get('phone')?.hasError('pattern')">
+              Phone Number is <span class="err-highlight">invalid</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Email Id</mat-label>
+            <input matInput placeholder="Email Id" formControlName="email" />
+            <mat-error *ngIf="patientForm.get('email')?.hasError('required')">
+              Email Id is <span class="err-highlight">required</span>.
+            </mat-error>
+            <mat-error *ngIf="patientForm.get('email')?.hasError('pattern')">
+              Email Id is <span class="err-highlight">invalid</span>.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <form
+          formGroupName="addressObj"
+          class="row"
+          fxLayout="row wrap"
+          fxLayoutGap="2em"
+          fxLayout.xs="column wrap"
+          fxLayoutGap.xs=".5em"
+        >
+          <mat-form-field fxFlex>
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              placeholder="Address (House No, Street etc.)"
+              formControlName="address"
+            />
+            <mat-error
+              *ngIf="
+                patientForm
+                  .get('addressObj')
+                  ?.get('address')
+                  ?.hasError('required')
+              "
+            >
+              Address is
+              <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex>
+            <mat-label>City</mat-label>
+            <input matInput placeholder="City" formControlName="city" />
+            <mat-error
+              *ngIf="
+                patientForm.get('addressObj')?.get('city')?.hasError('required')
+              "
+            >
+              City is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>State</mat-label>
+            <input matInput placeholder="State" formControlName="state" />
+            <mat-error
+              *ngIf="
+                patientForm
+                  .get('addressObj')
+                  ?.get('state')
+                  ?.hasError('required')
+              "
+            >
+              State is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex>
+            <mat-label>Pin/Zip Code</mat-label>
+            <input matInput placeholder="Pin/Zip Code" formControlName="pin" />
+            <mat-error
+              *ngIf="
+                patientForm.get('addressObj')?.get('pin')?.hasError('required')
+              "
+            >
+              Pin/Zip Code is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country">
+              <mat-option
+                *ngFor="let countryValue of countryList"
+                [value]="countryValue"
+              >
+                {{ countryValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                patientForm
+                  .get('addressObj')
+                  ?.get('country')
+                  ?.hasError('required')
+              "
+            >
+              Country is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Address Type</mat-label>
+            <mat-select formControlName="addressType">
+              <mat-option
+                *ngFor="let addressTypeValue of addressTypeList"
+                [value]="addressTypeValue"
+              >
+                {{ addressTypeValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                patientForm
+                  .get('addressObj')
+                  ?.get('addressType')
+                  ?.hasError('required')
+              "
+            >
+              Address Type is <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+        </form>
+        <form
+          formGroupName="emergencyContact"
+          class="row"
+          fxLayout="row wrap"
+          fxLayoutGap="2em"
+          fxLayout.xs="column wrap"
+          fxLayoutGap.xs=".5em"
+        >
+          <mat-form-field fxFlex>
+            <mat-label> fullName</mat-label>
+            <input
+              matInput
+              placeholder="Full Name"
+              formControlName="fullName"
+            />
+            <mat-error
+              *ngIf="
+                patientForm
+                  .get('emergencyContact')
+                  ?.get('fullName')
+                  ?.hasError('required')
+              "
+            >
+              Full Name is
+              <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex>
+            <mat-label>Relationship With Patient</mat-label>
+            <input
+              matInput
+              placeholder="Relationship With Patient"
+              formControlName="relationship"
+            />
+            <mat-hint
+              >e.g. Son/Father/Mother/Brother etc. (of Patient)</mat-hint
+            >
+            <mat-error
+              *ngIf="
+                patientForm
+                  .get('emergencyContact')
+                  ?.get('relationship')
+                  ?.hasError('required')
+              "
+            >
+              Relationship With Patient is
+              <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              placeholder="Phone Number"
+              formControlName="phone"
+            />
+            <mat-error
+              *ngIf="
+                patientForm
+                  .get('emergencyContact')
+                  ?.get('phone')
+                  ?.hasError('required')
+              "
+            >
+              Phone Number With Patient is
+              <span class="err-highlight">required</span>.
+            </mat-error>
+          </mat-form-field>
+        </form>
       </section>
       <div fxFlexAlign="end">
         <button mat-raised-button color="primary" type="submit">
