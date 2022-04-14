@@ -1,0 +1,79 @@
+<mat-card
+  fxFlex.xs="100%"
+  style="margin: -24px; box-shadow: none; border-radius: 4px"
+>
+  <!-- <mat-card-header class="primary-background" style="border-radius: 2px">
+    <div mat-card-avatar class="payment-success-image primary-background"></div>
+    <mat-card-title style="padding-top: 0px; margin: 0px"
+      >Payment Successful.</mat-card-title
+    >
+  </mat-card-header> -->
+  <mat-card-content style="padding: 0px; margin-bottom: 0px">
+    <div class="fdbk-div lg-text">
+      <p>FEEDBACK</p>
+      <form
+        [formGroup]="feedBackForm"
+        fxLayout="column"
+        fxLayoutAlign="space-around start"
+        fxFlexAlign="center"
+        (ngSubmit)="submitFeedback()"
+      >
+        <p style="color: #333333; opacity: 1">
+          Rate your overall experience at the Health Locker?
+        </p>
+        <div>
+          <ul class="rating-list" *ngFor="let starEl of stars">
+            <li (click)="countStar(starEl.star)">
+              <mat-icon
+                [ngStyle]="{
+                  color:
+                    hoverStar != -1
+                      ? starEl.star <= hoverStar
+                        ? stars[hoverStar - 1].color
+                        : '#bcbcbc'
+                      : starEl.star <= rating
+                      ? stars[rating - 1].color
+                      : '#bcbcbc'
+                }"
+                (mouseenter)="hoverStar = starEl.star"
+                (mouseleave)="hoverStar = -1"
+                >star_rate</mat-icon
+              >
+            </li>
+          </ul>
+        </div>
+        <p
+          class="lg-text fdbk-star-text"
+          [ngStyle]="{
+            color:
+              hoverStar != -1
+                ? stars[hoverStar - 1].color
+                : rating != -1
+                ? stars[rating - 1].color
+                : '#bcbcbc'
+          }"
+        >
+          {{
+            hoverStar != -1
+              ? stars[hoverStar - 1].text
+              : rating != -1
+              ? stars[rating - 1].text
+              : "&nbsp;&nbsp;&nbsp;"
+          }}
+        </p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Leave a comment</mat-label>
+          <textarea
+            matInput
+            placeholder="Write a review (Optional)"
+            rows="8"
+            formControlName="content"
+          ></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">
+          SUBMIT FEEDBACK
+        </button>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>
