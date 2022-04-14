@@ -85,7 +85,7 @@
           <div fxFlex="100">
             <form
               [formGroup]="ef"
-              (ngSubmit)="submitEnquiry(ef)"
+              (ngSubmit)="submitEnquiry()"
               #form="ngForm"
               fxLayout="column"
               fxFlexAlign="start"
@@ -102,34 +102,10 @@
                   <input
                     matInput
                     placeholder="Your Name"
-                    required
-                    title="Your Name"
                     formControlName="name"
                   />
-                  <mat-error *ngIf="ef.get('name')?.hasError('required')">
-                    Name is <span class="err-highlight">required</span>.
-                  </mat-error>
                   <mat-error *ngIf="ef.get('name')?.hasError('minlength')">
                     Name should be of at least 5 character.
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field fxFlex>
-                  <input
-                    matInput
-                    placeholder="Company Name"
-                    required
-                    title="Company Name"
-                    formControlName="companyName"
-                  />
-                  <mat-error
-                    *ngIf="ef.get('companyName')?.hasError('required')"
-                  >
-                    Company Name is <span class="err-highlight">required</span>.
-                  </mat-error>
-                  <mat-error
-                    *ngIf="ef.get('companyName')?.hasError('minlength')"
-                  >
-                    Company Name should be of at least 5 character.
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -144,32 +120,22 @@
                   <input
                     matInput
                     placeholder="Email"
-                    required
                     title="Your Email"
                     formControlName="email"
                   />
-                  <mat-error *ngIf="ef.get('email')?.hasError('required')">
-                    Email is <span class="err-highlight">required</span>.
-                  </mat-error>
                   <mat-error *ngIf="ef.get('email')?.hasError('email')">
                     Email is <span class="err-highlight">invalid</span>.
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field fxFlex>
                   <input
+                    type="number"
                     matInput
                     placeholder="Phone Number"
-                    required
                     title="Your 10 Digit Phone Number"
-                    formControlName="phoneNumber"
-                    oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"
+                    formControlName="phone"
                   />
-                  <mat-error
-                    *ngIf="ef.get('phoneNumber')?.hasError('required')"
-                  >
-                    Phone Number is <span class="err-highlight">required</span>.
-                  </mat-error>
-                  <mat-error *ngIf="ef.get('phoneNumber')?.hasError('pattern')">
+                  <mat-error *ngIf="ef.get('phone')?.hasError('pattern')">
                     Phone Number is <span class="err-highlight">invalid</span>.
                   </mat-error>
                 </mat-form-field>
@@ -178,24 +144,26 @@
                 <textarea
                   matInput
                   placeholder="Message/Enquiry"
-                  required
-                  title="Enquiry"
-                  type="text"
                   rows="5"
-                  formControlName="message"
+                  formControlName="content"
                 ></textarea>
-                <mat-error *ngIf="ef.get('message')?.hasError('required')">
+                <mat-error *ngIf="ef.get('content')?.hasError('required')">
                   Message is <span class="err-highlight">required</span>.
                 </mat-error>
-                <mat-error *ngIf="ef.get('message')?.hasError('minlength')">
-                  Message should be of at least 10 character long.
+                <mat-error *ngIf="ef.get('content')?.hasError('minlength')">
+                  Message should be of at least 20 character long.
                 </mat-error>
               </mat-form-field>
               <div fxFlex fxFlexAlign="start" fxLayoutGap="1em">
                 <button mat-raised-button color="primary" type="submit">
                   SAVE
                 </button>
-                <button mat-raised-button color="default" type="reset">
+                <button
+                  mat-raised-button
+                  color="default"
+                  type="button"
+                  (click)="buildEnquiryForm()"
+                >
                   Reset
                 </button>
               </div>
@@ -203,6 +171,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <app-review></app-review>
     </div>
   </div>
 </div>

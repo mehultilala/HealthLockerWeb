@@ -24,6 +24,7 @@ import { SignupComponent } from './signup/signup.component';
 import { BypassGuard } from './common/bypass.guard';
 import { AuthGuard } from './common/auth.guard';
 import { PatientMasterComponent } from './patient-master/patient-master.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PatientMasterComponent } from './patient-master/patient-master.componen
     SigninComponent,
     SignupComponent,
     PatientMasterComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

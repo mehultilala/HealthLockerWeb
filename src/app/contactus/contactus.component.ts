@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpEventType } from '@angular/common/http';
 import { AppService } from '../common/services/app.service';
-// import { CustomerService } from './../services/customer.service';
+import { ConversationService } from '../common/services/conversation.service';
+import { AuthService } from '../common/services/auth.service';
 
 @Component({
   selector: 'app-contactus',
@@ -11,12 +11,12 @@ import { AppService } from '../common/services/app.service';
 })
 export class ContactusComponent implements OnInit, OnDestroy {
   ef!: FormGroup;
-  progress: number = 0;
 
   constructor(
-    private _http: HttpClient,
+    private _authService: AuthService,
     private _formBuilder: FormBuilder,
-    public _appService: AppService // public _customerService: CustomerService
+    public _appService: AppService,
+    private _conversationService: ConversationService
   ) {}
 
   ngOnInit(): void {
@@ -24,52 +24,44 @@ export class ContactusComponent implements OnInit, OnDestroy {
   }
 
   buildEnquiryForm() {
+    let user = this._authService.user;
+
+    let name = user?.name || null;
+    let email = user?.email || null;
+    let phone = user?.phone || null;
+
     this.ef = this._formBuilder.group({
-      name: [null, [Validators.required, Validators.minLength(5)]],
-      companyName: [null, [Validators.required, Validators.minLength(5)]],
-      email: [null, [Validators.required, Validators.email]],
-      phoneNumber: [
-        null,
-        [Validators.required, Validators.pattern(/^\d{10}$/)],
-      ],
-      message: [null, [Validators.required, Validators.minLength(10)]],
+      type: ['Enquiry'],
+      name: [name, [Validators.minLength(3)]],
+      email: [email, [Validators.email]],
+      phone: [phone, [Validators.pattern(/^\d{5,20}$/)]],
+      content: [null, [Validators.required, Validators.minLength(20)]],
     });
   }
 
-  submitEnquiry(data: any) {
+  submitEnquiry() {
     if (this.ef.invalid) {
       this._appService.args$.next([
-        'Please enter required Details!',
+        'Please enter valid details!',
         'warn',
         '2000',
       ]);
-      return false;
+      return;
     }
-    this._http
-      .post('/enquiries', data.value, {
-        reportProgress: true,
-        observe: 'events',
-      })
-      .subscribe({
-        next: (event: any) => {
-          if (event.type === HttpEventType.UploadProgress)
-            this.progress = Math.round((100 * event.loaded) / event.total);
-          if (event.type === HttpEventType.Response)
-            this._appService.args$.next([
-              'Enquiry submitted successfully!',
-              'success',
-              '3000',
-            ]);
-        },
-        error: (err: any) => {
-          this._appService.args$.next([
-            'Something went wrong!',
-            'error',
-            '2000',
-          ]);
-        },
-      });
-    return true;
+
+    this._conversationService.saveConversation(this.ef.value).subscribe({
+      next: (response: any) => {
+        this._appService.args$.next([
+          'Enquiry submitted successfully!',
+          'success',
+          '3000',
+        ]);
+        this.buildEnquiryForm();
+      },
+      error: (err: any) => {
+        this._appService.args$.next(['Something went wrong!', 'error', '2000']);
+      },
+    });
   }
 
   ngOnDestroy() {}

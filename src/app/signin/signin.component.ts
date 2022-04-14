@@ -56,7 +56,6 @@ export class SigninComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._authService.loggedIn$.unsubscribe();
     this.signInStatusSub.unsubscribe();
     if (this.profSub) {
       this.profSub.unsubscribe();
@@ -213,7 +212,6 @@ export class SigninComponent implements OnInit, OnDestroy {
   }
 
   private afterSignIn(): void {
-    this._authService.loggedIn$.next(true);
     this._router.navigate(['/']);
     // this.profSub = this._pService.getProfile().subscribe(() => {
     //   // console.log("Navigating to Dashboard");

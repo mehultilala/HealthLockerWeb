@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { Constants } from '../common/constants';
 import { AppService } from '../common/services/app.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-patient-master',
@@ -155,4 +156,35 @@ export class PatientMasterComponent implements OnInit {
     return true;
   }
   closeDialog() {}
+
+  downloadAllPatients() {
+    this._http
+      .post(`${environment.serverUrl}/api/patients/download`, null, {
+        reportProgress: true,
+        observe: 'events',
+        responseType: 'blob',
+      })
+      .subscribe({
+        next: (event: any) => {
+          if (event.type === HttpEventType.UploadProgress)
+            this.progress = Math.round((100 * event.loaded) / event.total);
+          if (event.type === HttpEventType.Response) {
+            this._appService.args$.next([
+              'Patient downloaded successfully!',
+              'success',
+              '3000',
+            ]);
+            saveAs(event.body, 'Patients.xlsx');
+          }
+        },
+        error: (err: any) => {
+          this._appService.args$.next([
+            'Something went wrong!',
+            'error',
+            '2000',
+          ]);
+        },
+      });
+    return true;
+  }
 }

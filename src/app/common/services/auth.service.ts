@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ProfileService } from './profile.service';
 import { environment } from 'src/environments/environment';
 import { LocalstorageService } from './LocalstorageService';
 
@@ -13,7 +12,6 @@ export class AuthService {
   constructor(
     private _httpClient: HttpClient,
     private _router: Router,
-    private _pService: ProfileService,
     private _localStorage: LocalstorageService
   ) {
     if (
@@ -21,18 +19,17 @@ export class AuthService {
       !!this._localStorage.getItem('user')
     ) {
       this.loggedIn$.next(true);
-      this.authState = true;
+      let user = this._localStorage.getItem('user') || '';
+      this.user$.next(JSON.parse(user));
     }
-    this.loggedIn$.subscribe((val) => {
-      this.authState = val; /*console.log( 'login change :' +val)*/
-    });
   }
-
-  authState: boolean = false;
 
   loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(
     !!this._localStorage.getItem('authToken')
   );
+
+  user$: BehaviorSubject<any> = new BehaviorSubject(null);
+
   signInProgress: BehaviorSubject<string> = new BehaviorSubject('');
   signUpProgress: BehaviorSubject<string> = new BehaviorSubject('');
 
@@ -46,7 +43,7 @@ export class AuthService {
     return this.registrationData;
   }
 
-  private server() {
+  private signInAPI() {
     return `${environment.serverUrl}/api/auth/sign-in`;
   }
 
@@ -63,12 +60,16 @@ export class AuthService {
   }
 
   get authenticated(): boolean {
-    return !!this.authState;
+    return !!this.loggedIn$.value;
+  }
+
+  get user(): any {
+    return this.user$.value;
   }
 
   authenticate(credentials: any): Observable<any> {
     this.signInProgress.next('Siging in...');
-    return this._httpClient.post<any>(this.server(), credentials);
+    return this._httpClient.post<any>(this.signInAPI(), credentials);
   }
 
   register(signupParams: any): Observable<any> {
@@ -107,18 +108,12 @@ export class AuthService {
     this.clearToken();
     this._localStorage.setItem('authToken', data.authToken);
     this._localStorage.setItem('user', JSON.stringify(data.user));
+    this.loggedIn$.next(true);
+    this.user$.next(data.user);
   }
 
   getToken() {
     return this._localStorage.getItem('authToken');
-  }
-
-  private clearToken() {
-    if (this._localStorage.getItem('authToken')) {
-      this._localStorage.removeItem('authToken');
-    }
-    this._localStorage.removeItem('user');
-    this._localStorage.removeItem('authToken');
   }
 
   signOut() {
@@ -126,11 +121,15 @@ export class AuthService {
     this.afterSignOut();
   }
 
-  // this.signInProgress.next('');
+  private clearToken() {
+    this._localStorage.removeItem('user');
+    this._localStorage.removeItem('authToken');
+  }
 
   private afterSignOut(): void {
     this.signInProgress.next('Signed Out sucessfully.');
     this.loggedIn$.next(false);
+    this.user$.next(null);
     this._router.navigate(['/auth']);
   }
 }

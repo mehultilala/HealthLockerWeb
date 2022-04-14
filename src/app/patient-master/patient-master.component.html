@@ -12,6 +12,9 @@
       >
         Add Patient
       </button>
+      <button mat-raised-button (click)="downloadAllPatients()">
+        Download Patient
+      </button>
       <button
         mat-raised-button
         *ngIf="crudOperation === 'Create'"
