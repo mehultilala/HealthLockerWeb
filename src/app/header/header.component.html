@@ -63,12 +63,21 @@
   </button>
   <button
     mat-button
-    [routerLink]="['patient-master']"
+    [routerLink]="['patient', 'master']"
     (click)="toggleMenu()"
     class="menu-font"
     routerLinkActive="active-link-cls"
   >
     PATIENT MASTER
+  </button>
+  <button
+    mat-button
+    [routerLink]="['patient', 'profile']"
+    (click)="toggleMenu()"
+    class="menu-font"
+    routerLinkActive="active-link-cls"
+  >
+    PATIENT PROFILE
   </button>
   <button
     mat-button

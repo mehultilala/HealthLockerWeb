@@ -49,9 +49,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
       bannerPath: this.absPath + 'contact_us_banner.jpg',
     },
     {
-      path: '/patient-master',
+      path: '/patient/master',
       title: 'Patient Master',
       bannerPath: this.absPath + 'contact_us_banner.jpg',
+    },
+    {
+      path: '/patient/profile',
+      title: 'Patient Profile',
+      bannerPath: this.absPath + 'about_us_banner.jpg',
     },
   ];
 
@@ -65,7 +70,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this._appService.navigationEndReplay$
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((event: NavigationEnd) => {
-        this.setPageTitleAndBanner(event.url.split('?')[0]);
+        this.setPageTitleAndBanner(event.urlAfterRedirects.split('?')[0]);
         try {
           // gtag('config', 'UA-166803012-1', {
           //   'page_path' : event.urlAfterRedirects
@@ -98,22 +103,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
    */
   setPageTitleAndBanner(url: any): void {
     try {
-      if (url.startsWith('/dashboard')) {
-        this.title = 'Dashboard Front';
-        this._windowTitle.setTitle('Dashboard');
-        this.bannerPath = this.defaultBanner;
+      let urlInput = url === '/' ? '/home' : url;
+      const sidebarRoute = this.sidebarRoutes.find(
+        (c: any) => c.path === urlInput
+      );
+      if (!!sidebarRoute) {
+        this._windowTitle.setTitle(sidebarRoute.title);
+        this.bannerPath = sidebarRoute.bannerPath;
+        this.title = sidebarRoute.title;
       } else {
-        const child = this.sidebarRoutes.find((c: any) =>
-          url.startsWith(c.path)
-        );
-        if (!!child) {
-          this._windowTitle.setTitle(child.title);
-          this.bannerPath = child.bannerPath;
-          this.title = child.title;
-        } else {
-          this.title = '';
-          this._windowTitle.setTitle('NB Mercantile');
-        }
+        this.title = '';
+        this._windowTitle.setTitle('NB Mercantile');
       }
     } catch (error: any) {
       console.warn(error.message);

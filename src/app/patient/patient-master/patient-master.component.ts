@@ -2,8 +2,8 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { Constants } from '../common/constants';
-import { AppService } from '../common/services/app.service';
+import { Constants } from '../../common/constants';
+import { AppService } from '../../common/services/app.service';
 import { saveAs } from 'file-saver';
 
 @Component({

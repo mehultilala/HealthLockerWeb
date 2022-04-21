@@ -23,7 +23,6 @@ import { SignupComponent } from './signup/signup.component';
 
 import { BypassGuard } from './common/bypass.guard';
 import { AuthGuard } from './common/auth.guard';
-import { PatientMasterComponent } from './patient-master/patient-master.component';
 import { ReviewComponent } from './review/review.component';
 
 @NgModule({
@@ -38,7 +37,6 @@ import { ReviewComponent } from './review/review.component';
     LoadingSpinnerComponent,
     SigninComponent,
     SignupComponent,
-    PatientMasterComponent,
     ReviewComponent,
   ],
   imports: [

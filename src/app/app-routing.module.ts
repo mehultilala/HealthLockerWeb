@@ -8,7 +8,6 @@ import { OurServicesComponent } from './our-services/our-services.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './common/auth.guard';
 import { BypassGuard } from './common/bypass.guard';
-import { PatientMasterComponent } from './patient-master/patient-master.component';
 
 const routes: Routes = [
   {
@@ -34,9 +33,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'patient-master',
-    component: PatientMasterComponent,
-    // canActivate: [AuthGuard],
+    path: 'patient',
+    loadChildren: () =>
+      import('./patient/patient.module').then((m) => m.PatientModule),
   },
   { path: 'sign-in', component: SigninComponent, canActivate: [BypassGuard] },
   { path: 'sign-up', component: SignupComponent, canActivate: [BypassGuard] },

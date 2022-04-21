@@ -63,7 +63,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this._appService.navigationEndReplay$
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((event: NavigationEnd) => {
-        this.showHeaderFooter = event.url !== '/sign-in';
+        this.showHeaderFooter = event.urlAfterRedirects !== '/sign-in';
       });
   }
 
