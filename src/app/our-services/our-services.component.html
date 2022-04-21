@@ -102,14 +102,14 @@
       fxLayoutGap="2em"
     >
       <section fxLayout="column" fxLayoutGap="1em">
-        <mat-form-field fxFlex>
+        <!-- <mat-form-field fxFlex>
           <mat-label>Service</mat-label>
           <mat-select formControlName="serviceId">
             <mat-option *ngFor="let service of services" [value]="service.id">
               {{ service.name }}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
         <div fxLayout fxLayoutGap="1em" fxLayout.xs="column wrap">
           <mat-form-field fxFlex>
             <input
@@ -200,11 +200,5 @@
         </button>
       </div>
     </form>
-    <div *ngIf="progress > 0">
-      <mat-progress-bar
-        mode="determinate"
-        value="{{ progress }}"
-      ></mat-progress-bar>
-    </div>
   </div>
 </ng-template>

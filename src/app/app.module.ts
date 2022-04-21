@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MaterialModule } from './custom-material.module';
+import { AppMaterialModule } from './app-material.module';
 import { LoadingSpinnerComponent } from './common/components/loading-spinner.component';
 import { UrlInterceptor } from './common/url.interceptor';
 
@@ -46,7 +46,7 @@ import { ReviewComponent } from './review/review.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule,
+    AppMaterialModule,
   ],
   providers: [
     BypassGuard,
