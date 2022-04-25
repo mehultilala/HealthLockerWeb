@@ -6,6 +6,7 @@ import { PatientMaterialModule } from './patient-material.module';
 import { PatientMasterComponent } from './patient-master/patient-master.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 
 @NgModule({
   declarations: [PatientMasterComponent, PatientProfileComponent],
@@ -14,6 +15,7 @@ import { PatientProfileComponent } from './patient-profile/patient-profile.compo
     ReactiveFormsModule,
     PatientRoutingModule,
     PatientMaterialModule,
+    MatFileUploadModule,
   ],
 })
 export class PatientModule {}

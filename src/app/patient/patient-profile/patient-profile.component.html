@@ -1,1 +1,168 @@
-<p>patient-profile works!</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title fxLayoutAlign="center center">
+        Health Record 01 Mar 2022 - 30 May 2022</mat-panel-title
+      >
+      <!-- <mat-panel-description style="color: #000000cc">
+        01 Mar 2022 - 30 May 2022
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <mat-tab-group mat-stretch-tabs>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon color="primary">description</mat-icon>
+          Prescription
+        </ng-template>
+        <ng-template matTabContent>
+          <input
+            id="singleFile"
+            type="file"
+            #singleFileTabRef
+            [fileUploadInputFor]="fileUploadTabQueue"
+            style="display: none"
+          />
+
+          <br />
+
+          <div
+            id="dropZone"
+            [fileUploadInputFor]="fileUploadTabQueue"
+            class="upload-drop-zone"
+          >
+            <div #ref class="custom-dropzone">
+              <ng-content></ng-content>
+            </div>
+
+            <div class="content" *ngIf="ref.children?.length == 0">
+              <mat-icon>cloud_upload</mat-icon>
+              <div class="content-top-text">just drag and drop here</div>
+              <div class="content-center-text">or</div>
+              <button
+                class="file-browse-button"
+                type="button"
+                (click)="singleFileTabRef.click()"
+              >
+                Browse File
+              </button>
+            </div>
+          </div>
+          <mat-file-upload-queue
+            #fileUploadTabQueue
+            [fileAlias]="'file'"
+            [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'"
+          >
+            <mat-file-upload
+              [file]="file"
+              [id]="i"
+              *ngFor="let file of fileUploadTabQueue.files; let i = index"
+            ></mat-file-upload>
+          </mat-file-upload-queue>
+        </ng-template>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon color="primary">analytics</mat-icon>
+          Reports
+        </ng-template>
+        <ng-template matTabContent> Content 2 - Loaded </ng-template>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon color="primary">medical_information</mat-icon>
+          Summary
+        </ng-template>
+        <ng-template matTabContent> Content 2 - Loaded </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title fxLayoutAlign="center center">
+        Health Record 01 Jun 2022 - 31 Aug 2022</mat-panel-title
+      >
+      <!-- <mat-panel-description style="color: #000000cc">
+        01 Mar 2022 - 30 May 2022
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <mat-stepper
+      class="example-stepper"
+      [orientation]="(stepperOrientation | async)!"
+    >
+      <ng-template matStepperIcon="edit" let-index="index">
+        <mat-icon *ngIf="index === 0">description</mat-icon>
+        <mat-icon *ngIf="index === 1">analytics</mat-icon>
+        <mat-icon *ngIf="index === 2">medical_information</mat-icon>
+      </ng-template>
+      <mat-step label="Prescription" state="prescription" completed="false">
+        <ng-template matStepContent>
+          <input
+            id="singleFile"
+            type="file"
+            #singleFileRef
+            [fileUploadInputFor]="fileUploadQueue"
+            style="display: none"
+          />
+
+          <br />
+
+          <div
+            id="dropZone"
+            [fileUploadInputFor]="fileUploadQueue"
+            class="upload-drop-zone"
+          >
+            <div #ref class="custom-dropzone">
+              <ng-content></ng-content>
+            </div>
+
+            <div class="content" *ngIf="ref.children?.length == 0">
+              <mat-icon>cloud_upload</mat-icon>
+              <div class="content-top-text">just drag and drop here</div>
+              <div class="content-center-text">or</div>
+              <button
+                class="file-browse-button"
+                type="button"
+                (click)="singleFileRef.click()"
+              >
+                Browse File
+              </button>
+            </div>
+          </div>
+          <mat-file-upload-queue
+            #fileUploadQueue
+            [fileAlias]="'file'"
+            [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'"
+          >
+            <mat-file-upload
+              [file]="file"
+              [id]="i"
+              *ngFor="let file of fileUploadQueue.files; let i = index"
+            ></mat-file-upload>
+          </mat-file-upload-queue>
+        </ng-template>
+      </mat-step>
+      <mat-step label="Reports" state="reports" completed="false">
+        <ng-template matStepContent></ng-template>
+      </mat-step>
+
+      <mat-step label="Summary" state="medical_information" completed="false">
+        <ng-template matStepContent>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </ng-template>
+      </mat-step>
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="prescription">
+        <mat-icon>description</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="reports">
+        <mat-icon>analytics</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="medical_information">
+        <mat-icon>medical_information</mat-icon>
+      </ng-template>
+    </mat-stepper>
+  </mat-expansion-panel>
+</mat-accordion>

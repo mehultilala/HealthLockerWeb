@@ -42,6 +42,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/HealthLockerWeb/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -125,6 +126,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/HealthLockerWeb/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
