@@ -20,6 +20,7 @@
             type="file"
             #singleFileTabRef
             [fileUploadInputFor]="fileUploadTabQueue"
+            [allowedExtension]="allowedPatientDocType"
             style="display: none"
           />
 
@@ -28,6 +29,7 @@
           <div
             id="dropZone"
             [fileUploadInputFor]="fileUploadTabQueue"
+            [allowedExtension]="allowedPatientDocType"
             class="upload-drop-zone"
           >
             <div #ref class="custom-dropzone">
@@ -50,7 +52,8 @@
           <mat-file-upload-queue
             #fileUploadTabQueue
             [fileAlias]="'file'"
-            [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'"
+            [httpUrl]="'http://localhost:3000/api/upload'"
+            [requestBody]="requestBody"
           >
             <mat-file-upload
               [file]="file"
@@ -101,6 +104,7 @@
             type="file"
             #singleFileRef
             [fileUploadInputFor]="fileUploadQueue"
+            [allowedExtension]="allowedPatientDocType"
             style="display: none"
           />
 
@@ -109,6 +113,7 @@
           <div
             id="dropZone"
             [fileUploadInputFor]="fileUploadQueue"
+            [allowedExtension]="allowedPatientDocType"
             class="upload-drop-zone"
           >
             <div #ref class="custom-dropzone">
@@ -131,7 +136,8 @@
           <mat-file-upload-queue
             #fileUploadQueue
             [fileAlias]="'file'"
-            [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'"
+            [httpUrl]="'http://localhost:3000/api/upload'"
+            [requestBody]="requestBody"
           >
             <mat-file-upload
               [file]="file"

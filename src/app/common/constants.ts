@@ -237,4 +237,6 @@ export class Constants {
   get ADDRESS_TYPE_LIST() {
     return [...this._ADDRESS_TYPE_LIST];
   }
+
+  PATIENT_DOCUMENT_FILE_EXTN_LIST: string = '.png, .jpg, .jpeg, .pdf';
 }

@@ -5,6 +5,7 @@ import { StepperOrientation } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Constants } from '../../common/constants';
 
 @Component({
   selector: 'app-patient-profile',
@@ -19,6 +20,7 @@ import { map } from 'rxjs/operators';
 })
 export class PatientProfileComponent implements OnInit {
   constructor(
+    private constants: Constants,
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver
   ) {
@@ -30,4 +32,11 @@ export class PatientProfileComponent implements OnInit {
   ngOnInit(): void {}
 
   stepperOrientation!: Observable<StepperOrientation>;
+  requestBody: any = {
+    patient_id: '1235',
+    quarter_id: '1',
+  };
+
+  allowedPatientDocType: string =
+    this.constants.PATIENT_DOCUMENT_FILE_EXTN_LIST;
 }
