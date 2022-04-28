@@ -24,6 +24,8 @@ import { SignupComponent } from './signup/signup.component';
 import { BypassGuard } from './common/bypass.guard';
 import { AuthGuard } from './common/auth.guard';
 import { ReviewComponent } from './review/review.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,11 @@ import { ReviewComponent } from './review/review.component';
     BypassGuard,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-IN' },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'fill' },
+    },
   ],
   bootstrap: [AppComponent],
 })

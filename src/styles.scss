@@ -460,3 +460,8 @@ form {
   font-size: 13px;
   font-weight: 500;
 }
+
+.mat-form-field .mat-form-field-prefix,
+.mat-form-field .mat-form-field-suffix {
+  place-self: center;
+}

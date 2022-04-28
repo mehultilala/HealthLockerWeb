@@ -156,7 +156,6 @@
             <input
               matInput
               placeholder="Name of the patient"
-              title="Patient Name"
               formControlName="name"
             />
             <mat-error *ngIf="patientForm.get('name')?.hasError('required')">
@@ -167,15 +166,22 @@
             <mat-label>Date of Birth</mat-label>
             <input
               matInput
-              placeholder="Date of Birth (MM/DD/YYYY)"
-              [matDatepicker]="dobPicker"
+              placeholder="Date of Birth (DD/MM/YYYY)"
               formControlName="dateOfBirth"
+              [matDatepicker]="dobPicker"
+              [max]="maxDOB"
+              [disabled]="true"
             />
+            <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle
               matSuffix
               [for]="dobPicker"
             ></mat-datepicker-toggle>
-            <mat-datepicker #dobPicker></mat-datepicker>
+            <mat-datepicker
+              #dobPicker
+              startView="multi-year"
+              [disabled]="false"
+            ></mat-datepicker>
             <mat-error
               *ngIf="patientForm.get('dateOfBirth')?.hasError('required')"
             >

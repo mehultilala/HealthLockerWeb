@@ -29,6 +29,8 @@ export class PatientMasterComponent implements OnInit {
   countryList: string[] = this.constants.COUNTRY_LIST;
   addressTypeList: string[] = this.constants.ADDRESS_TYPE_LIST;
 
+  maxDOB: Date = new Date();
+
   progress: Number = 0;
 
   patientForm = this.fb.group({
