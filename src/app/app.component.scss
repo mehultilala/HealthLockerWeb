@@ -1,4 +1,4 @@
-@import './../style-common.scss';
+@import "./../style-common.scss";
 
 #scrolltoTopBtn {
   display: block;
@@ -10,16 +10,18 @@
   z-index: 2;
   border: none;
   outline: none;
-  background-color: black;
+  background-color: $blue-color;
   color: white;
+  opacity: 0.8;
   cursor: pointer;
   border-radius: 50%;
+  border-color: transparent;
   i {
-    font-size:  $lg-text-size !important;
+    font-size: $lg-text-size !important;
   }
-  &:hover{
-    background: #f3a32e;
-    transition-duration: .3s;
+  &:hover {
+    background: #93c842;
+    transition-duration: 0.3s;
   }
 }
 
@@ -35,17 +37,17 @@
 }
 
 .floating-button {
-    height: 40px;
-    position: fixed;
-    top: 120px;
-    font-size: $md-text-size !important;
-    font-weight: 400;
-    color: white;
-    background-color: #f3a32e;
-    right: -40px;
-    transform: rotate(-90deg);
-    border-radius: 0px;
-    z-index: 2;
+  height: 40px;
+  position: fixed;
+  top: 120px;
+  font-size: $md-text-size !important;
+  font-weight: 400;
+  color: white;
+  background-color: #93c842;
+  right: -40px;
+  transform: rotate(-90deg);
+  border-radius: 0px;
+  z-index: 2;
 }
 
 .floating-button-2 {

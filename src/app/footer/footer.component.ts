@@ -7,7 +7,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  regYear: Date = new Date();
+  regYear: number = new Date().getFullYear();
   mapiframe: SafeResourceUrl = '';
   constructor(private sanitizer: DomSanitizer) {
     this.mapiframe = sanitizer.bypassSecurityTrustResourceUrl(

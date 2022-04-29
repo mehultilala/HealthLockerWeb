@@ -5,12 +5,17 @@
 <!--Scroll to top-->
 <button
   @goToTopAnimation
-  *ngIf="!isHidden"
+  *ngIf="windowScrolled"
   id="scrolltoTopBtn"
   title="Go to Top"
-  (click)="topFunction()"
+  (click)="scrollToTop()"
 >
-  <i class="fa fa-arrow-up"></i>
+  <mat-icon
+    aria-hidden="false"
+    aria-label="Scroll To Top Button"
+    fontSet="material-icons-round"
+    >arrow_upwards</mat-icon
+  >
 </button>
 
 <button mat-raised-button class="floating-button" (click)="navigateToContact()">

@@ -1,9 +1,10 @@
-i{
-  //background-color:  #33383b;
-  color: #000000;
-  font-size: 18px;
-  text-align: center;
-  line-height: 32px;
-  margin: 5px 15px;
-  vertical-align: middle;
+@import "./../../style-common.scss";
+
+.contact-details .mat-icon {
+  color: $blue-color;
+}
+
+.contact-details span {
+  padding-left: 20px;
+  font-size: $sm-text-size;
 }

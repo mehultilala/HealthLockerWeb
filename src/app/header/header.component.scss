@@ -1,4 +1,4 @@
-@import './../../style-common.scss';
+@import "./../../style-common.scss";
 /*NAVBAR*/
 
 .mat-elevation-z3 {
@@ -14,13 +14,13 @@
   color: black;
 }
 
-.sticky-icon-menu{
+.sticky-icon-menu {
   @extend .sticky-toolbar;
   background-color: transparent;
 }
 
 .mobile-menu {
-  display: flex!important;
+  display: flex !important;
   flex-direction: column;
   align-items: flex-start;
   place-content: flex-start;
@@ -31,8 +31,9 @@
 
 .menu-font {
   font-weight: 600;
+  color: black;
   &:hover {
-    color: #f3a32e;
+    color: $blue-color;
     transform: scale(1.03);
   }
 }
@@ -40,14 +41,14 @@
 .sub-menu-font {
   font-weight: 500;
   &:hover {
-    color: #f3a32e;
+    color: $blue-color;
   }
 }
 
 .header-logo {
-  padding: 10px 0px !important;
+  // padding: 10px 0px !important;
   max-width: 200px !important;
-  height: 45px;
+  height: 55px;
 }
 
 /*BANNER*/
@@ -57,11 +58,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position:50% 50%;
+  background-position: 50% 50%;
   padding: 120px 0 120px 0;
 
   .text-center {
-    text-align: center!important;
+    text-align: center !important;
   }
 
   .container {
@@ -69,7 +70,7 @@
   }
 
   h1 {
-    color: #fff;
+    color: $green-color;
     font-size: 40px;
     font-weight: 700;
   }
@@ -82,23 +83,21 @@
     li {
       display: inline-block;
       margin: 10px 2px;
-      color: #fff;
+      color: black;
       font-size: $md-text-size;
-      opacity: .9;
+      opacity: 0.9;
       button {
         padding: 0px;
       }
     }
   }
-
 }
 
 @media screen and (max-width: 599px) {
   .breadcrumb-section {
-    padding: 60px 0 60px 0!important;
+    padding: 60px 0 60px 0 !important;
 
     h1 {
-      color: #fff;
       font-size: $xlx-text-size;
       margin: 0px;
     }
@@ -114,6 +113,7 @@
 .active-link-cls {
   //background: red!important;
   //color: white!important;
-  border-bottom: 2px solid #f3a32e;
+  border-bottom: 2px solid $green-color;
+  color: $blue-color;
   border-radius: 0;
 }

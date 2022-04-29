@@ -1,23 +1,22 @@
-@import './../../style-common.scss';
+@import "./../../style-common.scss";
 
 .client-box {
-  max-width:1150px;
+  max-width: 1150px;
 }
 
-
 .para-content {
-  font-size: $md-text-size!important;
-  font-weight: 400!important;
+  font-size: $md-text-size !important;
+  font-weight: 400 !important;
   color: $paragraph-color;
   line-height: 190%;
   margin-bottom: 15px;
-  text-align: left!important;
+  text-align: left !important;
   word-break: break-word;
 }
 
 @media screen and (max-width: 599px) {
   .para-content {
-    font-size: $sm-text-size!important;
+    font-size: $sm-text-size !important;
   }
 }
 
@@ -27,15 +26,19 @@
     height: 120px;
     border-radius: 20px;
     transform: rotate(45deg);
-    background-image: linear-gradient(to bottom, rgba(243, 163, 46, .15), transparent);
-    text-align:center;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(51, 247, 12, 0.15),
+      rgba(51, 247, 12, 0.01)
+    );
+    text-align: center;
   }
 
   i {
     display: block;
-    color: #f3a32e;
+    color: #93c842;
     font-size: 60px;
-    transform: translateY(40px) rotate(-45deg);
+    transform: translateY(30px) rotate(-45deg);
   }
 
   .benefit-text {
@@ -47,7 +50,6 @@
     text-align: center !important;
     max-width: 220px;
   }
-
 }
 
 .value-box {
@@ -55,7 +57,7 @@
   padding: 20px;
   margin-bottom: 16px;
   border-radius: 10px;
-  background-color: #f3a32e;
+  background-color: #93c842;
   color: white;
   .text {
     font-size: $smx-text-size !important;
@@ -92,14 +94,15 @@
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .value-card:hover .value-card-inner {
   transform: rotateY(180deg);
 }
 
-.value-card-front, .value-card-back {
+.value-card-front,
+.value-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -113,24 +116,24 @@
     height: 140px;
     border: 2px solid #a5a6aa;
     background-color: transparent;
-    box-shadow:none;
+    box-shadow: none;
     mat-icon {
       height: 70px;
       width: 70px;
-      font-size:70px;
-      color: #e34231;
+      font-size: 70px;
+      color: $blue-color;
     }
   }
-  .nb-sec-heading {
+  .hl-sec-heading {
     font-size: $mdx-text-size !important;
   }
 }
 
 .value-card-back {
-  background-color: #f3a32e;
+  background-color: $blue-color;
   color: white;
   transform: rotateY(180deg);
-  .back-header{
+  .back-header {
     font-size: $mdx-text-size !important;
     padding: 16px;
     border-bottom: 2px solid #ffffff;
@@ -142,20 +145,19 @@
     font-weight: 400 !important;
     color: white;
     line-height: 160%;
-    letter-spacing: .3px;
-    &::first-letter{
+    letter-spacing: 0.3px;
+    &::first-letter {
       font-size: $mdx-text-size !important;
     }
   }
   .value-text-highlight {
     @extend .value-text;
     font-weight: 600 !important;
-    font-style: italic!important;
+    font-style: italic !important;
   }
 }
 
-
-.rc-div{
+.rc-div {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -190,13 +192,12 @@
   }
 
   button {
-    font-size: $sm-text-size!important;
+    font-size: $sm-text-size !important;
   }
 }
 
-
 @media screen and (max-width: 599px) {
-  ::ng-deep .client-company-container .carousel-arrows{
-	display: none;
+  ::ng-deep .client-company-container .carousel-arrows {
+    display: none;
   }
 }

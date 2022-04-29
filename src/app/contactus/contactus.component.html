@@ -1,12 +1,6 @@
-<div
-  fxFlex
-  fxLayout="row"
-  fxFlexFill
-  fxLayoutAlign="center center"
-  class="background-color"
->
+<div fxFlex fxLayout="row" fxFlexFill fxLayoutAlign="center center">
   <div
-    class="nb-container"
+    class="hl-container"
     fxFlex="90"
     fxFlex.lt-lg="100"
     fxLayout="column"
@@ -18,58 +12,45 @@
       fxLayoutGap="40px"
       fxLayoutAlign="center start"
     >
-      <div fxFlex="30" fxLayout="column" fxLayoutGap="30px">
+      <div
+        fxFlex="30"
+        fxLayout="column"
+        fxLayoutGap="30px"
+        class="contact-details"
+      >
         <div>
-          <h6 class="nb-sec-heading">Visit our branch at</h6>
-          <div fxLayout="row">
+          <h6 class="hl-sec-heading">Visit our office at</h6>
+          <div fxLayout="row" fxLayoutAlign="start center">
             <div>
-              <i class="fa fa-map-marker-alt"></i>
+              <mat-icon>pin_drop</mat-icon>
             </div>
             <div>
               <span>
-                89-1A, Road No. 12, Ricco Industrial Area,<br />Madri, Udaipur,
-                Rajasthan,<br />
-                313002, India.<br
+                89-1A, Road No. 12, Rajshree Society,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mavdi, Rajkot, Gujarat,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;360004, India.<br
               /></span>
-            </div>
-          </div>
-          <div fxLayout="row" style="margin-top: 16px">
-            <div>
-              <i class="fa fa-map-marker-alt"></i>
-            </div>
-            <div>
-              <span>
-                Kota &nbsp;&nbsp;&nbsp;
-                <span style="opacity: 0.2">|&nbsp;&nbsp;&nbsp;</span>Bhilwara
-                &nbsp;&nbsp;&nbsp;&nbsp;<span style="opacity: 0.2"
-                  >|&nbsp;&nbsp;&nbsp;</span
-                >
-                Bhiwadi<br
-              /></span>
-              <span>
-                Jaipur&nbsp;&nbsp;<span style="opacity: 0.2"
-                  >|&nbsp;&nbsp;&nbsp;</span
-                >Jodhpur</span
-              >
             </div>
           </div>
         </div>
         <div>
-          <h6 class="nb-sec-heading">Contact us</h6>
-          <div fxLayout="column">
-            <div>
-              <i class="fa fa-phone"></i>
-              <span>+91 98290 35159</span>
+          <h6 class="hl-sec-heading">Contact us</h6>
+          <div fxLayout="column" fxLayoutGap="20px">
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <div style="height: 24px"><mat-icon>call</mat-icon></div>
+              <div><span>+91 87587 48221</span></div>
             </div>
-            <div>
-              <i class="fa fa-envelope"></i>
-              <span
-                ><a
-                  href="mailto:anurag_shell@rediffmail.com"
-                  style="text-decoration: none; color: black"
-                  >anurag_shell@rediffmail.com</a
-                ></span
-              >
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <div style="height: 24px"><mat-icon>mail</mat-icon></div>
+              <div>
+                <span
+                  ><a
+                    href="mailto:mehultilala1993@gmail.com"
+                    style="text-decoration: none; color: black"
+                    >mehultilala1993@gmail.com</a
+                  ></span
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -81,7 +62,7 @@
         [ngStyle.xs]="{ width: '100%' }"
       >
         <div fxFlex fxLayout="column">
-          <h6 class="nb-sec-heading">Write us a message</h6>
+          <h6 class="hl-sec-heading">Write us a message</h6>
           <div fxFlex="100">
             <form
               [formGroup]="ef"

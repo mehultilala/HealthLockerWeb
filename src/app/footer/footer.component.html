@@ -3,17 +3,17 @@
     <a [routerLink]="['home']">
       <img
         appLazyLoad
-        src="/assets/img/n_b_mercantile_logo.png"
-        alt="NB Mercantile Co. Pvt. Ltd."
+        src="/assets/img/HealthLockerLogo.jpeg"
+        alt="Health Locker Co. Pvt. Ltd."
         class="company-logo"
         style="padding: 0px 10px"
       />
-      <img
+      <!-- <img
         appLazyLoad
-        src="/assets/img/n_b_mercantile_tagline.png"
-        alt="NB Mercantile Co. Pvt. Ltd."
+        src="/assets/img/health_locker__tagline.png"
+        alt="Health Locker Co. Pvt. Ltd."
         class="company-tagline"
-      />
+      /> -->
     </a>
     <p class="footer-links">
       <a [routerLink]="['about-us']">About</a>
@@ -28,38 +28,40 @@
       <a>#1 INDUSTRIAL SOLUTION PROVIDER FOR BUSINESSES.</a>
     </p>
     <p class="footer-company-name">
-      NB Mercantile Co. Pvt Ltd &copy; {{ regYear | date: "yyyy" }}
+      Health Locker Pvt Ltd &copy; {{ regYear }}
     </p>
   </div>
 
   <div class="footer-center">
-    <div fxLayout="row">
-      <div>
-        <i class="fa fa-map-marker-alt"></i>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div style="height: 24px">
+        <mat-icon>pin_drop</mat-icon>
       </div>
       <div>
         <span>
-          89-1A, Road No. 12, Ricco Industrial Area,<br />Madri, Udaipur,
-          Rajasthan,<br />
-          313002, India.<br
+          89-1A, Road No. 12, Rajshree Society,<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mavdi, Rajkot, Gujarat,<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;360004, India.<br
         /></span>
       </div>
     </div>
     <br />
-    <div>
-      <i class="fa fa-phone"></i>
-      <span>+91 98290 35159</span>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div style="height: 24px"><mat-icon>call</mat-icon></div>
+      <div><span>+91 87587 48221</span></div>
     </div>
     <br />
-    <div>
-      <i class="fa fa-envelope"></i>
-      <span
-        ><a
-          href="mailto:anurag_shell@rediffmail.com"
-          style="text-decoration: none; color: #8f9296"
-          >anurag_shell@rediffmail.com</a
-        ></span
-      >
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div style="height: 24px"><mat-icon>mail</mat-icon></div>
+      <div>
+        <span
+          ><a
+            href="mailto:mehultilala1993@gmail.com"
+            style="color: black; text-decoration: none"
+            >mehultilala1993@gmail.com</a
+          ></span
+        >
+      </div>
     </div>
   </div>
 

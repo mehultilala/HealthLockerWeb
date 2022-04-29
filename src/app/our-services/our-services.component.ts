@@ -45,7 +45,7 @@ export class OurServicesComponent implements OnInit, AfterViewInit, OnDestroy {
         'This service is for the perople finfss sdfsd sdf sdf sdf sdf sdf sdf sdfnmnafnajsd asdfas asdfasdfasdff asdfd asdffas asddfasddfa sdf asdffasdfdasdfasdf asfd asdf asaddf asddf aasddf',
       siteLink: 'https://google.com',
       status: 'Active',
-      img: 'http://localhost:4200/assets/img/dewatering_img.jpg',
+      img: 'http://localhost:4200/assets/img/service.jpg',
     },
     {
       id: 2,
@@ -55,7 +55,7 @@ export class OurServicesComponent implements OnInit, AfterViewInit, OnDestroy {
         'This service is for the perople finfss sdfsd sdf sdf sdf sdf sdf sdf sdfnmnafnajsd asdfas asdfasdfasdff asdfd asdffas asddfasddfa sdf asdffasdfdasdfasdf asfd asdf asaddf asddf aasddf',
       siteLink: 'https://google.com',
       status: 'Active',
-      img: 'http://localhost:4200/assets/img/ewac_maintenance_and_repair_services_img.jpg',
+      img: 'http://localhost:4200/assets/img/service.jpg',
     },
     {
       id: 3,
@@ -65,7 +65,7 @@ export class OurServicesComponent implements OnInit, AfterViewInit, OnDestroy {
         'This service is for the perople finfss sdfsd sdf sdf sdf sdf sdf sdf sdfnmnafnajsd asdfas asdfasdfasdff asdfd asdffas asddfasddfa sdf asdffasdfdasdfasdf asfd asdf asaddf asddf aasddf',
       siteLink: 'https://google.com',
       status: 'Active',
-      img: 'http://localhost:4200/assets/img/annual_maintenance_contract_amc_img.jpg',
+      img: 'http://localhost:4200/assets/img/service.jpg',
     },
   ];
   ngOnInit(): void {

@@ -15,6 +15,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 
 import { AppService } from './common/services/app.service';
 import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 // import { CustomerService } from './services/customer.service';
 
 @Component({
@@ -35,10 +36,11 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   static isBrowser = new BehaviorSubject<boolean | null>(null);
   private unsubscribe: Subject<void> = new Subject();
   pdfURL!: string;
-  isHidden = true;
   showHeaderFooter = true;
 
+  windowScrolled: boolean = false;
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     public _appService: AppService,
     // public _customerService: CustomerService,
     private _snackBar: MatSnackBar,
@@ -67,14 +69,31 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       });
   }
 
+  // @HostListener('window:scroll', [])
+  // onWindowScroll() {
+  // if ((this.window.scrollY || 0) > 100) this.windowScrolled = true;
+  // else this.windowScrolled = false;
+  // }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    // if ((this.window.scrollY || 0) > 100) this.isHidden = false;
-    // else this.isHidden = true;
+    if (
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop > 100
+    ) {
+      this.windowScrolled = true;
+    } else if (
+      (this.windowScrolled && window.pageYOffset) ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop < 10
+    ) {
+      this.windowScrolled = false;
+    }
   }
 
-  topFunction() {
-    // window.scroll(0, 0);
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 
   ngAfterViewInit() {
@@ -94,8 +113,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   navigateToService() {
-    // this._customerService.openServiceFormFlag$.next(true);
-    // this._router.navigate(['/our-services']);
+    this._router.navigate(['/our-services']);
   }
 
   navigateToContact() {

@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   sidebarRoutes: any[] = [
     {
       path: '/home',
-      title: 'NB Mercantile',
+      title: 'Health Locker',
       bannerPath: this.absPath + 'about_us_banner.jpg',
     },
     {
@@ -113,7 +113,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.title = sidebarRoute.title;
       } else {
         this.title = '';
-        this._windowTitle.setTitle('NB Mercantile');
+        this._windowTitle.setTitle('Health Locker');
       }
     } catch (error: any) {
       console.warn(error.message);

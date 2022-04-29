@@ -39,64 +39,93 @@ body {
 //@include angular-material-theme($n_b_mercantile-theme);
 
 $md-n_b_mercantile-accent: (
-  50: #e4e4e4,
-  100: #bdbdbd,
-  200: #919191,
-  300: #646464,
-  400: #434343,
-  500: #222222,
-  600: #1e1e1e,
-  700: #191919,
-  800: #141414,
-  900: #0c0c0c,
-  A100: #e76c6c,
-  A200: #e04040,
-  A400: #ec0000,
-  A700: #d30000,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #ffffff,
-    400: #ffffff,
-    500: #ffffff,
-    600: #ffffff,
-    700: #ffffff,
-    800: #ffffff,
-    900: #ffffff,
-    A100: #000000,
-    A200: #ffffff,
-    A400: #ffffff,
-    A700: #ffffff,
-  ),
-);
-
-$md-n_b_mercantile-primary: (
-  50: #f9e6e7,
-  100: #f0c2c2,
-  200: #e79999,
-  300: #dd7070,
-  400: #d55152,
-  500: #ce3233,
-  600: #c92d2e,
-  700: #c22627,
-  800: #bc1f20,
-  900: #b01314,
-  A100: #ffe1e1,
-  A200: #ffaeaf,
-  A400: #ff7b7c,
-  A700: #ff6263,
+  // 50: #e9f7fc,
+  // 100: #c8eaf6,
+  // 200: #a3ddf1,
+  // 300: #7ecfeb,
+  // 400: #62c4e6,
+  // 500: #46bae2,
+  // 600: #3fb3df,
+  // 700: #37abda,
+  // 800: #2fa3d6,
+  // 900: #2094cf,
+  // A100: #ffffff,
+  // A200: #d4efff,
+  // A400: #a1ddff,
+  // A700: #87d4ff,
+  // contrast: (
+  //   50: #000000,
+  //   100: #000000,
+  //   200: #000000,
+  //   300: #000000,
+  //   400: #000000,
+  //   500: #000000,
+  //   600: #000000,
+  //   700: #000000,
+  //   800: #000000,
+  //   900: #ffffff,
+  //   A100: #000000,
+  //   A200: #000000,
+  //   A400: #000000,
+  //   A700: #000000,
+  // ),
+  50: #e9f7fc,
+  100: #c8eaf6,
+  200: #a3ddf1,
+  300: #7ecfeb,
+  400: #62c4e6,
+  500: #46bae2,
+  600: #3fb3df,
+  700: #37abda,
+  800: #2fa3d6,
+  900: #2094cf,
+  A100: #ffffff,
+  A200: #d4efff,
+  A400: #a1ddff,
+  A700: #87d4ff,
   contrast: (
     50: #000000,
     100: #000000,
     200: #000000,
     300: #000000,
-    400: #ffffff,
-    500: #ffffff,
+    400: #000000,
+    500: #000000,
     600: #ffffff,
     700: #ffffff,
     800: #ffffff,
     900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  )
+);
+$md-n_b_mercantile-primary: (
+  50: #f2f8e8,
+  100: #dfefc6,
+  200: #c9e4a1,
+  300: #b3d97b,
+  400: #a3d05e,
+  500: #93c842,
+  600: #8bc23c,
+  700: #80bb33,
+  800: #76b42b,
+  900: #64a71d,
+  A100: #efffe0,
+  A200: #d4ffad,
+  A400: #baff7a,
+  A700: #adff60,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
     A100: #000000,
     A200: #000000,
     A400: #000000,
@@ -242,17 +271,17 @@ button {
   background-color: $background-color;
 }
 
-.nb-container {
+.hl-container {
   padding: 100px 10px;
 }
 
 @media screen and (max-width: 599px) {
-  .nb-container {
+  .hl-container {
     padding: 50px 10px !important;
   }
 }
 
-.nb-heading {
+.hl-heading {
   color: $heading-color;
   font-size: $xxl-text-size !important;
   font-weight: 600 !important;
@@ -261,13 +290,13 @@ button {
 }
 
 @media screen and (max-width: 599px) {
-  .nb-heading {
+  .hl-heading {
     font-size: $xlx-text-size !important;
     font-weight: 600 !important;
   }
 }
 
-.nb-sec-heading {
+.hl-sec-heading {
   font-size: $lg-text-size !important;
   font-weight: 500 !important;
   color: $heading-color;
@@ -277,13 +306,13 @@ button {
 }
 
 @media screen and (max-width: 599px) {
-  .nb-sec-heading {
+  .hl-sec-heading {
     font-size: $mdx-text-size !important;
     font-weight: 500 !important;
   }
 }
 
-.nb-desc {
+.hl-desc {
   font-size: $smx-text-size !important;
   font-weight: 400 !important;
   word-break: break-word;
@@ -293,7 +322,7 @@ button {
 }
 
 @media screen and (max-width: 599px) {
-  .nb-desc {
+  .hl-desc {
     font-size: $smx-text-size !important;
     font-weight: 400 !important;
   }
@@ -303,11 +332,11 @@ button {
   font-weight: 500;
 }
 
-.nb-word-wrap {
+.hl-word-wrap {
   word-break: break-word;
 }
 
-.nb-imgage {
+.hl-imgage {
   border-radius: 4px;
   max-width: 100%;
   margin: 8px 0px !important;
@@ -322,7 +351,7 @@ button {
 
 /* box layouts */
 
-.nb-box {
+.hl-box {
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15) !important;
   border-radius: 2px;
@@ -330,7 +359,7 @@ button {
   margin: 1%;
   padding: 10px;
   .heading {
-    @extend .nb-sec-heading;
+    @extend .hl-sec-heading;
   }
   div {
     padding: 5px;
@@ -341,7 +370,7 @@ button {
 }
 
 .box3 {
-  @extend .nb-box;
+  @extend .hl-box;
   box-sizing: border-box;
   flex-direction: column;
   display: flex;
@@ -352,12 +381,12 @@ button {
   border-radius: 4px;
   padding: 5px;
   .img-in-box {
-    @extend .nb-imgage;
+    @extend .hl-imgage;
   }
 }
 
 .box4 {
-  @extend .nb-box;
+  @extend .hl-box;
   box-sizing: border-box;
   flex-direction: column;
   display: flex;
@@ -369,7 +398,7 @@ button {
   border-radius: 4px;
   padding: 5px;
   .img-in-box {
-    @extend .nb-imgage;
+    @extend .hl-imgage;
   }
 }
 
