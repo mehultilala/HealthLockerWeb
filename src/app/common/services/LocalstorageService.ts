@@ -22,7 +22,11 @@ export class LocalstorageService implements Storage {
   private storage: Storage;
 
   constructor() {
-    this.storage = new LocalStorage();
+    if (typeof localStorage !== 'undefined') {
+      this.storage = localStorage;
+    } else {
+      this.storage = new LocalStorage();
+    }
 
     AppComponent.isBrowser.subscribe((isBrowser) => {
       if (isBrowser) {

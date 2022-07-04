@@ -26,6 +26,7 @@ import { AuthGuard } from './common/auth.guard';
 import { ReviewComponent } from './review/review.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { LoginFormComponent } from './signin/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     SigninComponent,
     SignupComponent,
     ReviewComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

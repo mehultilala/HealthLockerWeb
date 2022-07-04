@@ -24,11 +24,17 @@ export class AuthService {
     }
   }
 
-  loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(
+  private loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(
     !!this._localStorage.getItem('authToken')
   );
+  get getLoggedInObs(): any {
+    return this.user$.asObservable();
+  }
 
-  user$: BehaviorSubject<any> = new BehaviorSubject(null);
+  private user$: BehaviorSubject<any> = new BehaviorSubject(null);
+  get getUserObs(): any {
+    return this.user$.asObservable();
+  }
 
   signInProgress: BehaviorSubject<string> = new BehaviorSubject('');
   signUpProgress: BehaviorSubject<string> = new BehaviorSubject('');
@@ -94,9 +100,9 @@ export class AuthService {
   }
 
   handleSignInError(e: HttpErrorResponse) {
-    if (e.status == 401) {
+    if (e.status == 400) {
       this.signInProgress.next(
-        'Unable to sign in. Please enter valid Email/Password.'
+        'Unable to sign in. Please enter valid user name and password.'
       );
     } else {
       this.signInProgress.next('Network error.');
@@ -105,6 +111,7 @@ export class AuthService {
 
   storeToken(data: any) {
     this.signInProgress.next('Signed in sucessfully. Please wait...');
+    this.signUpProgress.next('Signed up sucessfully.');
     this.clearToken();
     this._localStorage.setItem('authToken', data.authToken);
     this._localStorage.setItem('user', JSON.stringify(data.user));
@@ -130,6 +137,6 @@ export class AuthService {
     this.signInProgress.next('Signed Out sucessfully.');
     this.loggedIn$.next(false);
     this.user$.next(null);
-    this._router.navigate(['/auth']);
+    this._router.navigate(['/home']);
   }
 }

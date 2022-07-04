@@ -1,33 +1,77 @@
+.signup-div {
+  background: url("/assets/img/tkl_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.signup-container {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 1em;
+  max-width: 500px;
+}
+
+.signup-box {
+  width: 100%;
+  padding: 30px 15px 25px 20px;
+  box-shadow: 5px 5px 20px #0000003b;
+  opacity: 1;
+  z-index: 2;
+  background: #fff;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 12px;
+}
+
+@media only screen and (max-width: 959px) {
+  .signup-div {
+    background: none;
+  }
+}
+
 .full-width {
   width: 100%;
 }
 
-
-.login-progress {
+.signup-progress {
   margin-bottom: 1em;
   border-radius: 3px;
-  background: #D6E9FF;
+  background: #d6e9ff;
   font-size: 14px;
   padding: 10px;
 }
 
-.signin-link {
-  text-decoration:none;
+.action-link {
+  text-decoration: none;
   color: inherit;
+  display: contents;
 }
 
-@media only screen and (max-width: 768px) {
-  .register-btn{
+@media only screen and (max-width: 959px) {
+  .action-btn {
     display: flex;
     width: 100%;
     place-content: center;
-    min-width: 100%!important;
+    min-width: 100% !important;
   }
 
-  .signin-link {
+  .action-link {
     margin-top: 16px;
     display: flex;
     place-content: center;
     width: 100%;
   }
+}
+
+.brand-logo {
+  // padding: 10px 0px !important;
+  max-width: 200px !important;
+  height: 55px;
+}
+
+.company-name {
+  color: #80cc00;
+  font-size: 1.2em;
+  cursor: pointer;
 }

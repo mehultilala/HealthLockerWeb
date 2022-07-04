@@ -22,6 +22,7 @@ const routes: Routes = [
   {
     path: 'our-services',
     component: OurServicesComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'about-us',
@@ -30,12 +31,12 @@ const routes: Routes = [
   {
     path: 'contact-us',
     component: ContactusComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'patient',
     loadChildren: () =>
       import('./patient/patient.module').then((m) => m.PatientModule),
+    canActivate: [AuthGuard],
   },
   { path: 'sign-in', component: SigninComponent, canActivate: [BypassGuard] },
   { path: 'sign-up', component: SignupComponent, canActivate: [BypassGuard] },

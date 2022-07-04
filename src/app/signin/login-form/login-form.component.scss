@@ -1,0 +1,94 @@
+.login-container {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 1em;
+}
+
+.login-box {
+  width: 100%;
+  padding: 50px 0px 15px 20px;
+  box-shadow: 5px 5px 20px #0000003b;
+  opacity: 1;
+  z-index: 2;
+  background: #fff;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 12px;
+}
+
+.login-col1 {
+  padding: 25px 25px 10px 25px;
+}
+
+.login-col2 {
+  padding: 25px 60px 25px 30px;
+}
+
+.project-naming {
+  display: inline;
+  font-size: 25px;
+  vertical-align: middle;
+  padding-left: 3px;
+  color: #80cc00;
+  font-weight: bold;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.login-progress {
+  margin-bottom: 2em;
+  border-radius: 3px;
+  background: #d6e9ff;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.eql-margin {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.action-link {
+  text-decoration: none;
+  color: inherit;
+  display: contents;
+}
+
+.forgot-password-modal {
+  width: 15%;
+}
+
+@media only screen and (max-width: 959px) {
+  .login-container {
+    padding: 0px;
+  }
+  .login-box {
+    padding: 5px;
+  }
+  .login-col1 {
+    padding: 25px 25px 10px 25px;
+  }
+  .login-col2 {
+    padding: 10px 25px 25px 25px;
+  }
+}
+
+@media only screen and (max-width: 959px) {
+  .sign-in-btn {
+    display: flex;
+    width: 100%;
+    place-content: center;
+    min-width: 100% !important;
+  }
+
+  .action-link {
+    margin-top: 16px;
+    display: flex;
+    place-content: center;
+    width: 100%;
+  }
+}

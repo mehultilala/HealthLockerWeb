@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 // import { CustomerService } from './../services/customer.service';
 // import { FeaturedSolution } from './../models/featured-solution';

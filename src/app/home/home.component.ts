@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 // import { CustomerService } from './../services/customer.service';
@@ -15,9 +14,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   proportion: any = '100%';
   constructor(
     // public _customerService: CustomerService,
-    private _router: Router
-  ) // private window: Window
-  {
+    private _router: Router // private window: Window
+  ) {
     // if (this.window.outerHeight / this.window.outerWidth > 1.5)
     //   this.proportion = this.window.outerWidth * 0.75;
     // else

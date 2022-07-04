@@ -1,27 +1,32 @@
 <app-header *ngIf="showHeaderFooter"></app-header>
-<router-outlet></router-outlet>
+<div class="outlet">
+  <router-outlet></router-outlet>
+</div>
 <!-- <button (click)="openService()">Get Service</button> -->
 
 <!--Scroll to top-->
+
 <button
+  mat-mini-fab
   @goToTopAnimation
-  *ngIf="windowScrolled"
   id="scrolltoTopBtn"
+  *ngIf="windowScrolled"
   title="Go to Top"
   (click)="scrollToTop()"
 >
-  <mat-icon
-    aria-hidden="false"
-    aria-label="Scroll To Top Button"
-    fontSet="material-icons-round"
-    >arrow_upwards</mat-icon
-  >
+  <mat-icon fontSet="material-icons-round">arrow_upwards</mat-icon>
 </button>
 
-<button mat-raised-button class="floating-button" (click)="navigateToContact()">
+<button
+  *ngIf="showHeaderFooter"
+  mat-raised-button
+  class="floating-button"
+  (click)="navigateToContact()"
+>
   Contact Us
 </button>
 <button
+  *ngIf="showHeaderFooter"
   mat-raised-button
   class="floating-button-2"
   (click)="navigateToService()"

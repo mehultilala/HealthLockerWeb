@@ -5,6 +5,7 @@ import {
   OnDestroy,
   PLATFORM_ID,
   Inject,
+  OnInit,
 } from '@angular/core';
 import { filter, takeUntil } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -16,6 +17,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { AppService } from './common/services/app.service';
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/common';
+
+import { Title, Meta } from '@angular/platform-browser';
 // import { CustomerService } from './services/customer.service';
 
 @Component({
@@ -32,11 +35,12 @@ import { DOCUMENT } from '@angular/common';
     ]),
   ],
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   static isBrowser = new BehaviorSubject<boolean | null>(null);
   private unsubscribe: Subject<void> = new Subject();
   pdfURL!: string;
   showHeaderFooter = true;
+  hideHeaderFooterArr: string[] = ['/sign-in', '/sign-up'];
 
   windowScrolled: boolean = false;
   constructor(
@@ -46,7 +50,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     private _snackBar: MatSnackBar,
     // private window: Window,
     private _router: Router,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
+    private _windowTitle: Title,
+    private _meta: Meta
   ) {
     AppComponent.isBrowser.next(isPlatformBrowser(platformId));
     this._appService.args$
@@ -65,8 +71,21 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this._appService.navigationEndReplay$
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((event: NavigationEnd) => {
-        this.showHeaderFooter = event.urlAfterRedirects !== '/sign-in';
+        this.showHeaderFooter = !this.hideHeaderFooterArr.includes(
+          event.urlAfterRedirects
+        );
       });
+  }
+  ngOnInit(): void {
+    this._meta.addTags([
+      { name: 'description', content: 'Home page of Health Locker' },
+      { name: 'author', content: 'mehultilala1993' },
+      {
+        name: 'keywords',
+        content:
+          'Health Locker, Health Documents, Health Reports, Health Record, Health History',
+      },
+    ]);
   }
 
   // @HostListener('window:scroll', [])

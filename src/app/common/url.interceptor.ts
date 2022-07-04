@@ -5,7 +5,7 @@ import {
   HttpHandler,
   HttpRequest,
 } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { EMPTY, Observable, throwError, timer } from 'rxjs';
 import { retry, catchError, finalize } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
 import { LoadingSpinnerService } from './services/loading-spinner.service';
@@ -29,14 +29,31 @@ export class UrlInterceptor implements HttpInterceptor {
     if (req.method === 'POST') this._loadingSpinnerService.reveal();
 
     return next.handle(req).pipe(
-      retry(1),
+      retry({
+        count: 1,
+        delay: this.retryNotifier,
+      }),
       catchError((error, caught) => {
         // remove token on unauthorized error
-        if (error.status === 401) this._authService.signOut();
-        return of(error);
+        if (error.status === 401) {
+          this._authService.signOut();
+          return EMPTY;
+        }
+        //return of(error);
+        return throwError(() => error);
       }) as any,
       finalize(() => this._loadingSpinnerService.hide())
     );
+  }
+
+  retryNotifier(error: any, retryCount: number) {
+    // console.log(error, retryCount);
+
+    if (error.status === 504) {
+      return timer(1000);
+    }
+
+    throw error;
   }
 
   private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {

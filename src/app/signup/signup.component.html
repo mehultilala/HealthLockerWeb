@@ -1,84 +1,146 @@
-<div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="2em">
-  <div class="label-text">Create your Truckola Account</div>
-  <div class="login-progress" *ngIf="statusText">{{ statusText }}</div>
-  <form
-    [formGroup]="registerForm"
-    (ngSubmit)="onSubmit()"
-    fxLayout="column"
-    fxLayoutGap="0.5em"
-    novalidate
-  >
-    <mat-form-field class="full-width">
-      <input formControlName="name" matInput placeholder="Name" />
-      <mat-error *ngIf="registerForm.get('name')?.hasError('required')">
-        Name is <span class="err-highlight">required</span>
-      </mat-error>
-      <mat-error *ngIf="registerForm.get('name')?.hasError('minlength')">
-        Name is <span class="err-highlight">too short</span>.
-      </mat-error>
-    </mat-form-field>
-
-    <!-- <mat-form-field class="full-width">
-      <input formControlName="company_name" matInput placeholder="Company name">
-      <mat-error *ngIf="registerForm.get('company_name')?.hasError('required')">
-        Company name is <span class="err-highlight">required</span>.
-      </mat-error>
-      <mat-error *ngIf="registerForm.get('company_name')?.hasError('minlength')">
-        Company name is <span class="err-highlight">too short</span>.
-      </mat-error>
-
-    </mat-form-field> -->
-
-    <mat-form-field class="full-width">
-      <input
-        formControlName="phone_number"
-        matInput
-        placeholder="Mobile no."
-        maxlength="10"
-      />
-      <mat-error *ngIf="registerForm.get('phone_number')?.hasError('required')">
-        Mobile number is <span class="err-highlight">required</span>.
-      </mat-error>
-      <mat-error *ngIf="registerForm.get('phone_number')?.hasError('pattern')">
-        Mobile number is <span class="err-highlight">invalid</span>.
-      </mat-error>
-      <mat-error *ngIf="registerForm.get('phone_number')?.hasError('taken')">
-        Mobile number has <span class="err-highlight">already been taken</span>.
-      </mat-error>
-    </mat-form-field>
-
-    <!-- <mat-form-field class="full-width">
-      <input formControlName="email" matInput placeholder="Email">
-      <mat-error *ngIf="registerForm.get('email')?.hasError('pattern')">
-        Email is <span class="err-highlight">invalid</span>.
-      </mat-error>
-      <mat-error *ngIf="registerForm.get('email')?.hasError('taken')">
-        Email has <span class="err-highlight">already been taken</span>.
-      </mat-error>
-    </mat-form-field> -->
-
-    <mat-form-field class="full-width">
-      <input
-        formControlName="password"
-        matInput
-        placeholder="Password"
-        type="password"
-      />
-      <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
-        Password is <span class="err-highlight">required</span>
-      </mat-error>
-      <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
-        Minimum 8 characters are <span class="err-highlight">required</span>
-      </mat-error>
-    </mat-form-field>
-    <div fixLayout="row" fxLayoutAlign="space-between center" fxLayoutWrap>
-      <button mat-raised-button color="primary" class="register-btn">
-        REGISTER
-      </button>
-      <a [routerLink]="['sign-in']" mat-raised-button class="signin-link"
-        >Already have an account?</a
+<div fxLayout="row" fxLayoutAlign="center center" class="signup-div">
+  <div class="signup-container" fxFlex="40" fxFlex.xs="90">
+    <div
+      class="signup-box"
+      fxFlex="100"
+      fxLayout="column"
+      fxLayoutAlign="center start"
+      fxLayoutGap="1em"
+    >
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayout.lt-md="column"
+        fxLayoutGap="1em"
+        style="width: 100%"
       >
+        <button
+          fxFlex="30"
+          fxFlex.lt-md="100"
+          mat-button
+          [routerLink]="['home']"
+          style="padding: 0px"
+        >
+          <img
+            [src]="'/assets/img/HealthLockerLogo.jpeg'"
+            alt="Health Locker"
+            title="Go To Home Page"
+            class="brand-logo"
+          />
+        </button>
+        <div fxFlex="70" fxFlex.lt-md="100">
+          Create your
+          <span class="company-name" [routerLink]="['/home']"
+            >Health Locker</span
+          >
+          Account
+        </div>
+      </div>
+      <div class="signup-progress" *ngIf="statusText">{{ statusText }}</div>
+      <form
+        class="full-width"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        fxLayout="column"
+        fxLayoutGap="0.5em"
+        novalidate
+      >
+        <mat-form-field class="full-width">
+          <input
+            formControlName="firstName"
+            matInput
+            placeholder="First Name"
+          />
+          <mat-error
+            *ngIf="registerForm.get('firstName')?.hasError('required')"
+          >
+            First Name is <span class="err-highlight">required</span>
+          </mat-error>
+          <mat-error
+            *ngIf="registerForm.get('firstName')?.hasError('minlength')"
+          >
+            First Name is <span class="err-highlight">too short</span>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input formControlName="lastName" matInput placeholder="Last Name" />
+          <mat-error *ngIf="registerForm.get('lastName')?.hasError('required')">
+            Last Name is <span class="err-highlight">required</span>
+          </mat-error>
+          <mat-error
+            *ngIf="registerForm.get('lastName')?.hasError('minlength')"
+          >
+            Last Name is <span class="err-highlight">too short</span>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input
+            formControlName="phone"
+            matInput
+            placeholder="Enter Mobile no."
+            maxlength="15"
+          />
+          <mat-error *ngIf="registerForm.get('phone')?.hasError('required')">
+            Mobile number is <span class="err-highlight">required</span>.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('phone')?.hasError('pattern')">
+            Mobile number is <span class="err-highlight">invalid</span>.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('phone')?.hasError('taken')">
+            Mobile number has
+            <span class="err-highlight">already been taken</span>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input
+            formControlName="email"
+            matInput
+            placeholder="Email"
+            type="email"
+          />
+          <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+            Email is <span class="err-highlight">required</span>.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('pattern')">
+            Email is <span class="err-highlight">invalid</span>.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('taken')">
+            Email has <span class="err-highlight">already been taken</span>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input
+            formControlName="password"
+            matInput
+            placeholder="Password"
+            type="password"
+          />
+          <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+            Password is <span class="err-highlight">required</span>
+          </mat-error>
+          <mat-error
+            *ngIf="registerForm.get('password')?.hasError('minlength')"
+          >
+            Minimum 8 characters are <span class="err-highlight">required</span>
+          </mat-error>
+        </mat-form-field>
+        <div
+          fixLayout="row"
+          fxLayout.lt-md="column"
+          fxLayoutAlign.lt-md="center stretch"
+          fxLayoutAlign="space-between center"
+          fxLayoutWrap
+        >
+          <button mat-raised-button color="primary">REGISTER</button>
+          <a [routerLink]="['/sign-in']" mat-raised-button class="action-link"
+            >Already have an account?</a
+          >
+        </div>
+      </form>
     </div>
-  </form>
-  <!-- <div style="text-align: center;"><a mat-raised-button [routerLink]="'../forgot-password'">Forgot Password?</a></div> -->
+  </div>
 </div>
