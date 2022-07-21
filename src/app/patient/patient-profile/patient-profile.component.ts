@@ -20,7 +20,6 @@ import { Constants } from '../../common/constants';
 })
 export class PatientProfileComponent implements OnInit {
   constructor(
-    private constants: Constants,
     private _formBuilder: FormBuilder,
     breakpointObserver: BreakpointObserver
   ) {
@@ -37,6 +36,5 @@ export class PatientProfileComponent implements OnInit {
     quarter_id: '1',
   };
 
-  allowedPatientDocType: string =
-    this.constants.PATIENT_DOCUMENT_FILE_EXTN_LIST;
+  allowedPatientDocType: string = Constants.PATIENT_DOCUMENT_FILE_EXTN_LIST;
 }

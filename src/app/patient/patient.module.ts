@@ -7,6 +7,7 @@ import { PatientMasterComponent } from './patient-master/patient-master.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 import { MatFileUploadModule } from 'angular-material-fileupload';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [PatientMasterComponent, PatientProfileComponent],
@@ -16,6 +17,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     PatientRoutingModule,
     PatientMaterialModule,
     MatFileUploadModule,
+    SweetAlert2Module.forRoot(),
   ],
 })
 export class PatientModule {}

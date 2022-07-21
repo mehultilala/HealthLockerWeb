@@ -19,3 +19,15 @@ $paragraph-color: #8f8f8f; //grey
 
 $blue-color: #46bae2;
 $green-color: #93c842;
+
+.primary-color {
+  color: $green-color !important;
+}
+
+.accent-color {
+  color: $blue-color !important;
+}
+
+.paragraph-color {
+  color: $paragraph-color !important;
+}

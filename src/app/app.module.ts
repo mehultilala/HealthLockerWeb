@@ -27,6 +27,7 @@ import { ReviewComponent } from './review/review.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { LoginFormComponent } from './signin/login-form/login-form.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { LoginFormComponent } from './signin/login-form/login-form.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppMaterialModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     BypassGuard,

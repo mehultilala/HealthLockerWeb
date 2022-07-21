@@ -1,5 +1,20 @@
-.content {
-  padding: 16px;
+.main-page-style {
+  background-color: none;
+}
+
+.inner-section-style {
+  margin: 16px;
+  // box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.29);
+}
+
+.inner-section-padding-shadow-style {
+  margin: 16px;
+  padding: 12px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.29);
+  border-radius: 6px;
+  border-color: #e7eaec;
+  border-style: solid;
+  border-width: 1px;
 }
 
 form .mat-form-field {
@@ -8,4 +23,105 @@ form .mat-form-field {
 
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
+}
+
+.view-table {
+  text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.view-table tbody {
+  position: relative;
+}
+
+.view-table tbody th {
+  font-weight: bold;
+  // background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.view-table th,
+.view-table td {
+  padding: 8px 10px 8px 20px;
+}
+
+.view-table tr th {
+  position: relative;
+  word-break: break-all;
+
+  padding-right: 11px;
+  width: 35%;
+  position: relative;
+  top: -8px;
+}
+
+.view-table tbody tr th::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 25px;
+  margin-left: -20px;
+  top: 0px;
+  border-left: 2px solid #e6e6e6;
+}
+
+.view-table tbody tr th:first-child::before {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+}
+
+.view-table tbody tr td {
+  color: #3e3e3e;
+  position: relative;
+  word-break: break-all;
+}
+
+.view-table tbody tr td::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 30px;
+  margin-left: -20px;
+  top: 10px;
+  border-left: 2px solid #e6e6e6;
+}
+
+.view-table tbody tr td:first-child::before {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+}
+
+.patient-card {
+  .mat-card {
+    display: flex;
+    flex-direction: column;
+    .mat-card-header {
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      flex-grow: 1;
+
+      .mat-card-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 18px;
+        min-height: 40px;
+      }
+      .mat-card-subtitle {
+        display: inline-block;
+        margin-bottom: 0px;
+      }
+    }
+    .mat-card-content {
+      overflow: auto;
+    }
+  }
 }

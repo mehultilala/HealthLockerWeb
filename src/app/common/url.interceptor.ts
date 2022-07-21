@@ -26,7 +26,12 @@ export class UrlInterceptor implements HttpInterceptor {
 
     req = this.addAuthenticationToken(req);
 
-    if (req.method === 'POST') this._loadingSpinnerService.reveal();
+    if (
+      req.method === 'POST' ||
+      req.method === 'PUT' ||
+      req.method === 'DELETE'
+    )
+      this._loadingSpinnerService.reveal();
 
     return next.handle(req).pipe(
       retry({
